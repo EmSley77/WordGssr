@@ -1,4 +1,4 @@
-package es.guesstheword;
+package es.guesstheword.entity;
 
 import jakarta.persistence.*;
 
