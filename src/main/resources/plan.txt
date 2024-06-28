@@ -1,0 +1,24 @@
+Login service
+
+User service
+
+Game Service
+
+Menu service
+
+_________________________________________
+
+game logic plan
+
+get a random word method
+
+get explanation for the word method
+
+guess method
+- get attempts, time, number of attempts, if lost -5 xp, mm
+
+
+save results method in leaderboard method
+
+
+

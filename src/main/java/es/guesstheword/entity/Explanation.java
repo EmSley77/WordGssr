@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Explaination {
+public class Explanation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "explaination_id", nullable = false)
@@ -34,7 +34,7 @@ public class Explaination {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Explaination that = (Explaination) o;
+        Explanation that = (Explanation) o;
         return explainationId == that.explainationId && wordId == that.wordId;
     }
 
