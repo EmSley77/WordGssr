@@ -4,11 +4,16 @@ Emanuel sleyman
 2024-06-29
 service class containing all logic for game
 */
+import es.guesstheword.entity.Users;
+import es.guesstheword.entity.Words;
 import es.guesstheword.repository.ClueRepo;
 import es.guesstheword.repository.ExplanationRepo;
 import es.guesstheword.repository.LeaderboardRepo;
 import es.guesstheword.repository.WordsRepo;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Random;
 
 @Service
 public class GameLogic {
@@ -30,6 +35,11 @@ public class GameLogic {
 
 
     //get word random
+    public Words getRandomWord() {
+        Random random = new Random();
+        List<Words> allWordsList = wordsRepo.findAll();
+        return allWordsList.get(random.nextInt(allWordsList.size()));
+    }
 
     //get word explanation
 
