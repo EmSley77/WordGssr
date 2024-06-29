@@ -4,6 +4,7 @@ Emanuel sleyman
 2024-06-29
 service class containing all logic for game
 */
+import es.guesstheword.entity.Explanation;
 import es.guesstheword.entity.Users;
 import es.guesstheword.entity.Words;
 import es.guesstheword.repository.ClueRepo;
@@ -42,6 +43,9 @@ public class GameLogic {
     }
 
     //get word explanation
+    public Explanation getWordExplanation(Words word) {
+        return explanationRepo.findExplanationByWordId(word.getWordId());
+    }
 
     //play game
 
