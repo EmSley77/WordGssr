@@ -29,5 +29,13 @@ public class GameLogic {
     }
 
 
+    //get word random
+
+    //get word explanation
+
+    //play game
+
+    //save results in leaderboard
+
 
 }
