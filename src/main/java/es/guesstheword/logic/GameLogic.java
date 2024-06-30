@@ -53,14 +53,21 @@ public class GameLogic {
 
     //save results in leaderboard
     public void saveResults(int userId, String username, Words word, int nGuess, int nClues, int time) {
-        Leaderboard leaderboard = new Leaderboard();
-        leaderboard.setUserId(userId);
-        leaderboard.setUsername(username);
-        leaderboard.setSecretWord(String.valueOf(word));
-        leaderboard.setNumberOfGuesses(nGuess);
-        leaderboard.setNumberOfClues(nClues);
+        try {
+            Leaderboard leaderboard = new Leaderboard();
+            leaderboard.setUserId(userId);
+            leaderboard.setUsername(username);
+            leaderboard.setSecretWord(String.valueOf(word));
+            leaderboard.setNumberOfGuesses(nGuess);
+            leaderboard.setNumberOfClues(nClues);
+            leaderboard.setTime(time);
 
-        leaderboard.setTime(time);
+            leaderboardRepo.save(leaderboard);
+            System.out.println("Game was Successfully saved");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 
