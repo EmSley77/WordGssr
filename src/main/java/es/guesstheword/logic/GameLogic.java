@@ -5,16 +5,14 @@ Emanuel sleyman
 service class containing all logic for game
 */
 
-import es.guesstheword.entity.Explanation;
-import es.guesstheword.entity.Leaderboard;
-import es.guesstheword.entity.Users;
-import es.guesstheword.entity.Words;
+import es.guesstheword.entity.*;
 import es.guesstheword.repository.ClueRepo;
 import es.guesstheword.repository.ExplanationRepo;
 import es.guesstheword.repository.LeaderboardRepo;
 import es.guesstheword.repository.WordsRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -38,6 +36,8 @@ public class GameLogic {
 
     private int nGuess = 0;
 
+    private int nClues = 0;
+
     public GameLogic(LeaderboardRepo leaderboardRepo, WordsRepo wordsRepo, ExplanationRepo explanationRepo, ClueRepo clueRepo) {
         this.leaderboardRepo = leaderboardRepo;
         this.wordsRepo = wordsRepo;
@@ -58,6 +58,12 @@ public class GameLogic {
         return explanationRepo.findExplanationByWordId(word.getWordId());
     }
 
+    //get random clues
+    public Clues getWordClue(Words word) {
+        Random random = new Random();
+        List<Clues> clues = clueRepo.findCluesByWord(String.valueOf(word));
+        return clues.get(random.nextInt(clues.size()));
+    }
     //prepare game, word mm
     public void prepareGame() {
         word = getRandomWord();
@@ -73,7 +79,16 @@ public class GameLogic {
             guess = input.nextLine();
             nGuess++;
 
+            if (nGuess == 3 || nGuess == 6 || nGuess == 9) {
+                System.out.println(getWordClue(word));
+                nClues++;
+            }
+
+
+
         } while (guess.equalsIgnoreCase(String.valueOf(word)));
+
+        //save results here?
 
 
     }
