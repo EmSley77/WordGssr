@@ -4,7 +4,9 @@ Emanuel sleyman
 2024-06-29
 service class containing all logic for game
 */
+
 import es.guesstheword.entity.Explanation;
+import es.guesstheword.entity.Leaderboard;
 import es.guesstheword.entity.Users;
 import es.guesstheword.entity.Words;
 import es.guesstheword.repository.ClueRepo;
@@ -50,6 +52,17 @@ public class GameLogic {
     //play game
 
     //save results in leaderboard
+    public void saveResults(int userId, String username, Words word, int nGuess, int nClues, int time) {
+        Leaderboard leaderboard = new Leaderboard();
+        leaderboard.setUserId(userId);
+        leaderboard.setUsername(username);
+        leaderboard.setSecretWord(String.valueOf(word));
+        leaderboard.setNumberOfGuesses(nGuess);
+        leaderboard.setNumberOfClues(nClues);
+
+        leaderboard.setTime(time);
+
+    }
 
 
 }

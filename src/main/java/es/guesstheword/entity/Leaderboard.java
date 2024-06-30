@@ -1,9 +1,10 @@
 package es.guesstheword.entity;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
-
+@NoArgsConstructor
 @Entity
 public class Leaderboard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +14,6 @@ public class Leaderboard {
     @Basic
     @Column(name = "user_id", nullable = false)
     private int userId;
-    @Basic
     @Column(name = "secret_word", nullable = false, length = 50)
     private String secretWord;
     @Basic
@@ -28,6 +28,15 @@ public class Leaderboard {
     @Basic
     @Column(name = "time", nullable = false)
     private int time;
+
+    public Leaderboard(int userId, String secretWord, String username, int numberOfGuesses, int numberOfClues, int time) {
+        this.userId = userId;
+        this.secretWord = secretWord;
+        this.username = username;
+        this.numberOfGuesses = numberOfGuesses;
+        this.numberOfClues = numberOfClues;
+        this.time = time;
+    }
 
     public int getLeaderboardId() {
         return leaderboardId;
@@ -85,16 +94,4 @@ public class Leaderboard {
         this.time = time;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Leaderboard that = (Leaderboard) o;
-        return leaderboardId == that.leaderboardId && userId == that.userId && numberOfGuesses == that.numberOfGuesses && numberOfClues == that.numberOfClues && time == that.time && Objects.equals(secretWord, that.secretWord) && Objects.equals(username, that.username);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(leaderboardId, userId, secretWord, username, numberOfGuesses, numberOfClues, time);
-    }
 }
