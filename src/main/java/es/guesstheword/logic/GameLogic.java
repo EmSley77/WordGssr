@@ -28,6 +28,8 @@ public class GameLogic {
 
     private ClueRepo clueRepo;
 
+    private LoginLogic loginLogic;
+
     private String guess;
 
     private Words word;
@@ -44,11 +46,12 @@ public class GameLogic {
 
     private int nClues = 0;
 
-    public GameLogic(LeaderboardRepo leaderboardRepo, WordsRepo wordsRepo, ExplanationRepo explanationRepo, ClueRepo clueRepo) {
+    public GameLogic(LeaderboardRepo leaderboardRepo, WordsRepo wordsRepo, ExplanationRepo explanationRepo, ClueRepo clueRepo, LoginLogic loginLogic) {
         this.leaderboardRepo = leaderboardRepo;
         this.wordsRepo = wordsRepo;
         this.explanationRepo = explanationRepo;
         this.clueRepo = clueRepo;
+        this.loginLogic = loginLogic;
     }
 
 
@@ -83,7 +86,6 @@ public class GameLogic {
         System.out.println("CLUES: " + nClues);
         System.out.println("THE WORD WAS: " + word);
         System.out.println("TIME: " + totalTime);
-
     }
 
     //play game
@@ -111,6 +113,7 @@ public class GameLogic {
         getResults();
 
         //save results here?
+        saveResults(loginLogic.getUserId(), loginLogic.getUserUsername(), word, nGuess, nClues, endTimer);
 
 
     }

@@ -22,6 +22,9 @@ public class LoginLogic {
     @Getter
     private int userId;
 
+    @Getter
+    private String userUsername;
+
     private Scanner input = new Scanner(System.in);
 
     public LoginLogic(UserRepo userRepo) {
@@ -58,10 +61,31 @@ public class LoginLogic {
         user.setRegistrationDate(Date.valueOf(LocalDate.now()));
         if (rPassword.equals(password)) {
             userRepo.save(user);
+            System.out.println("ACCOUNT WAS CREATED");
         } else return;
 
     }
 
+    //LOGIN
+    public void login() {
+        System.out.print("Username: ");
+        String username = input.nextLine();
+
+        System.out.print("Password: ");
+        String password = input.nextLine();
+
+        Users user = userRepo.findByUsernameAndPassword(username, password);
+        if (user == null) {
+            System.out.println("COULD NOT FIND PERSON WITH THESE CREDENTIALS, TRY AGAIN");
+            return;
+        }
+
+        if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
+            userId = user.getUserId();
+            userUsername = user.getUsername();
+            System.out.println("SUCCESSFULLY LOGGED IN");
+        }
+    }
     //delete account
 
     //edit account
