@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 @Service
 public class GameLogic {
@@ -28,6 +29,12 @@ public class GameLogic {
     private ExplanationRepo explanationRepo;
 
     private ClueRepo clueRepo;
+
+    private Words word;
+
+    private Scanner input = new Scanner(System.in);
+
+    private int nGuess = 0;
 
     public GameLogic(LeaderboardRepo leaderboardRepo, WordsRepo wordsRepo, ExplanationRepo explanationRepo, ClueRepo clueRepo) {
         this.leaderboardRepo = leaderboardRepo;
@@ -49,7 +56,23 @@ public class GameLogic {
         return explanationRepo.findExplanationByWordId(word.getWordId());
     }
 
+    //prepare game, word mm
+    public void prepareGame() {
+        word = getRandomWord();
+        System.out.println(getWordExplanation(word));
+    }
+
     //play game
+    public void GuessGame() {
+        prepareGame();
+
+        System.out.print("Guess the word: ");
+        String guess = input.nextLine();
+        nGuess++;
+
+
+
+    }
 
     //save results in leaderboard
     public void saveResults(int userId, String username, Words word, int nGuess, int nClues, int time) {
