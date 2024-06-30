@@ -1,10 +1,14 @@
 package es.guesstheword.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 import java.util.Objects;
 
+@NoArgsConstructor
+@Data
 @Entity
 public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,88 +40,14 @@ public class Users {
     @Column(name = "registration_date", nullable = false)
     private Date registrationDate;
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Users(String name, String lastname, String username, String password, int xp, int gameLevel, int role, Date registrationDate) {
         this.name = name;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getXp() {
-        return xp;
-    }
-
-    public void setXp(int xp) {
         this.xp = xp;
-    }
-
-    public int getGameLevel() {
-        return gameLevel;
-    }
-
-    public void setGameLevel(int gameLevel) {
         this.gameLevel = gameLevel;
-    }
-
-    public int getRole() {
-        return role;
-    }
-
-    public void setRole(int role) {
         this.role = role;
-    }
-
-    public Date getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Users users = (Users) o;
-        return userId == users.userId && xp == users.xp && gameLevel == users.gameLevel && role == users.role && Objects.equals(name, users.name) && Objects.equals(lastname, users.lastname) && Objects.equals(username, users.username) && Objects.equals(password, users.password) && Objects.equals(registrationDate, users.registrationDate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(userId, name, lastname, username, password, xp, gameLevel, role, registrationDate);
     }
 }

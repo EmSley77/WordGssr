@@ -12,7 +12,7 @@ import es.guesstheword.repository.LeaderboardRepo;
 import es.guesstheword.repository.WordsRepo;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -35,6 +35,12 @@ public class GameLogic {
     private Scanner input = new Scanner(System.in);
 
     private int nGuess = 0;
+
+    private int startTimer;
+
+    private int endTimer;
+
+    private int totalTime;
 
     private int nClues = 0;
 
@@ -64,10 +70,20 @@ public class GameLogic {
         List<Clues> clues = clueRepo.findCluesByWord(String.valueOf(word));
         return clues.get(random.nextInt(clues.size()));
     }
+
     //prepare game, word mm
     public void prepareGame() {
         word = getRandomWord();
         System.out.println(getWordExplanation(word));
+    }
+
+    // print out results  in the end after game ahs been finished
+    public void getResults() {
+        System.out.println("GUESSES: " + nGuess);
+        System.out.println("CLUES: " + nClues);
+        System.out.println("THE WORD WAS: " + word);
+        System.out.println("TIME: " + totalTime);
+
     }
 
     //play game
@@ -75,6 +91,7 @@ public class GameLogic {
         prepareGame();
 
         do {
+            startTimer = (int) System.currentTimeMillis();
             System.out.print("Guess the word: ");
             guess = input.nextLine();
             nGuess++;
@@ -85,8 +102,13 @@ public class GameLogic {
             }
 
 
+            //continue game as while its not equal
+        } while (!guess.equalsIgnoreCase(String.valueOf(word)));
 
-        } while (guess.equalsIgnoreCase(String.valueOf(word)));
+        endTimer = (int) System.currentTimeMillis();
+        totalTime = startTimer - endTimer;
+        //get game results here
+        getResults();
 
         //save results here?
 
