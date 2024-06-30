@@ -30,6 +30,8 @@ public class GameLogic {
 
     private ClueRepo clueRepo;
 
+    private String guess;
+
     private Words word;
 
     private Scanner input = new Scanner(System.in);
@@ -66,10 +68,12 @@ public class GameLogic {
     public void GuessGame() {
         prepareGame();
 
-        System.out.print("Guess the word: ");
-        String guess = input.nextLine();
-        nGuess++;
+        do {
+            System.out.print("Guess the word: ");
+            guess = input.nextLine();
+            nGuess++;
 
+        } while (guess.equalsIgnoreCase(String.valueOf(word)));
 
 
     }
