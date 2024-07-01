@@ -5,13 +5,14 @@ Emanuel sleyman
 a class for all menu logic
 */
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@Service
+@Component
 public class MenuLogic {
 
+    // TODO: close scanner after done with menu
     private Scanner input = new Scanner(System.in);
     private int option;
     // all service classes here
@@ -26,13 +27,13 @@ public class MenuLogic {
 
             option = input.nextInt();
             switch (option) {
+             /*
                 case 1 -> ;
                 case 2 -> ;
                 case 3 -> ;
-
+              */
             }
         } while (option != 0);
-
     }
 
     //startMenu after successful login
@@ -48,11 +49,13 @@ public class MenuLogic {
 
             option = input.nextInt();
             switch (option) {
+              /*
                 case 1 -> ;
                 case 2 -> ;
                 case 3 -> ;
                 case 4 -> ;
                 case 5 -> ;
+               */
             }
         } while (option != 0);
     }

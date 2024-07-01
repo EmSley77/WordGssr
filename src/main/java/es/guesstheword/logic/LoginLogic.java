@@ -8,13 +8,13 @@ service class containing all logic for login
 import es.guesstheword.entity.Users;
 import es.guesstheword.repository.UserRepo;
 import lombok.Getter;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-@Service
+@Component
 public class LoginLogic {
 
     private UserRepo userRepo;
@@ -25,6 +25,7 @@ public class LoginLogic {
     @Getter
     private String userUsername;
 
+    // TODO: close scanner after done with login methods
     private Scanner input = new Scanner(System.in);
 
     public LoginLogic(UserRepo userRepo) {
@@ -89,8 +90,12 @@ public class LoginLogic {
 
     //delete account
 
+
     //edit account
 
     //reset sessionId after signing out
+    public void resetSessionId() {
+        userId = 0;
+    }
 
 }

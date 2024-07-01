@@ -14,7 +14,7 @@ public class Runner implements CommandLineRunner {
     }
 
     public void run(String... args) throws Exception {
-        gameLogic.GuessGame();
+        gameLogic.guessGame();
 
     }
 }

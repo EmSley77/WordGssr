@@ -10,13 +10,13 @@ import es.guesstheword.repository.ClueRepo;
 import es.guesstheword.repository.ExplanationRepo;
 import es.guesstheword.repository.LeaderboardRepo;
 import es.guesstheword.repository.WordsRepo;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-@Service
+@Component
 public class GameLogic {
 
     private LeaderboardRepo leaderboardRepo;
@@ -89,7 +89,7 @@ public class GameLogic {
     }
 
     //play game
-    public void GuessGame() {
+    public void guessGame() {
 
         prepareGame();
 
