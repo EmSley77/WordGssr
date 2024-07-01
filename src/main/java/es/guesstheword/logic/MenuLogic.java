@@ -41,10 +41,9 @@ public class MenuLogic {
         do {
             System.out.println("0. SIGN OUT");
             System.out.println("1. PLAY GAME");
-            System.out.println("2. EDIT ACCOUNT");
-            System.out.println("3. DELETE ACCOUNT");
-            System.out.println("4. MY STATISTICS");
-            System.out.println("5. VIEW LEADERBOARD");
+            System.out.println("2. MY STATISTICS");
+            System.out.println("3. VIEW LEADERBOARD");
+            System.out.println("4. DELETE ACCOUNT");
             System.out.print("OPTION: ");
 
             option = input.nextInt();

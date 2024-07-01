@@ -89,9 +89,26 @@ public class LoginLogic {
     }
 
     //delete account
+    public void deleteAccount() {
+        System.out.print("Write Username: ");
+        String username = input.nextLine();
 
+        System.out.print("Write Password: ");
+        String password = input.nextLine();
 
-    //edit account
+        System.out.print("Repeat Password: ");
+        String repeatPassword = input.nextLine();
+
+        Users user = userRepo.findByUsernameAndPassword(username, password);
+        if (user == null) {
+            System.out.println("could not find user with these credentials, try again");
+            return;
+        }
+
+        userRepo.deleteById(user.getUserId());
+        System.out.println("User with username: " + username + " has been deleted");
+        //make sure to direct back to login page after deleting user account
+    }
 
     //reset sessionId after signing out
     public void resetSessionId() {

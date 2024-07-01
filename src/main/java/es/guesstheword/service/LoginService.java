@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LoginService {
+
     private LoginLogic loginLogic;
 
     public LoginService(LoginLogic loginLogic) {
@@ -22,6 +23,10 @@ public class LoginService {
 
     public void createAccount() {
         loginLogic.createAccount();
+    }
+
+    public void deleteAccount() {
+        loginLogic.deleteAccount();
     }
 
     //after signing out to reset 'sessionId'
