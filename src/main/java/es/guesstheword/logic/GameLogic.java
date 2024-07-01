@@ -33,6 +33,7 @@ public class GameLogic {
 
     private Words word;
 
+    // TODO: close scanner after game ends
     private Scanner input = new Scanner(System.in);
 
     private int nGuess = 0;
