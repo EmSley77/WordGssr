@@ -128,11 +128,11 @@ public class GameLogic {
     }
 
     //save results in leaderboard
-    public void saveResults(int userId, String username, Words word, int nGuess, int nClues, int time) {
+    public void saveResults(Words word, int nGuess, int nClues, int time) {
         try {
             Leaderboard leaderboard = new Leaderboard();
-            leaderboard.setUserId(userId);
-            leaderboard.setUsername(username);
+            leaderboard.setUserId(loginLogic.getUserId());
+            leaderboard.setUsername(loginLogic.getUserUsername());
             leaderboard.setSecretWord(String.valueOf(word.getWord()));
             leaderboard.setNumberOfGuesses(nGuess);
             leaderboard.setNumberOfClues(nClues);
