@@ -1,20 +1,20 @@
 package es.guesstheword;
 
-import es.guesstheword.logic.GameLogic;
+import es.guesstheword.service.GameService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Runner implements CommandLineRunner {
 
-    GameLogic gameLogic;
+    GameService gameService;
 
-    public Runner(GameLogic gameLogic) {
-        this.gameLogic  = gameLogic;
+    public Runner(GameService gameService) {
+        this.gameService  = gameService;
     }
 
     public void run(String... args) throws Exception {
-        gameLogic.guessGame();
+        gameService.playGame();
 
     }
 }

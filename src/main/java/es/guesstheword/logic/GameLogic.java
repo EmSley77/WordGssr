@@ -44,6 +44,8 @@ public class GameLogic {
 
     private int totalTime;
 
+    private double elapsedTime;
+
     private int nClues = 0;
 
     public GameLogic(LeaderboardRepo leaderboardRepo, WordsRepo wordsRepo, ExplanationRepo explanationRepo, ClueRepo clueRepo, LoginLogic loginLogic) {
@@ -85,7 +87,7 @@ public class GameLogic {
         System.out.println("GUESSES: " + nGuess);
         System.out.println("CLUES: " + nClues);
         System.out.println("THE WORD WAS: " + word.getWord());
-        System.out.println("TIME: " + totalTime);
+        System.out.println("TOTAL SECONDS: " + elapsedTime);
     }
 
     //play game
@@ -116,19 +118,21 @@ public class GameLogic {
         System.out.println("YOU WON");
 
         endTimer = (int) System.currentTimeMillis();
-        //TODO: need to fix time aswell
-        totalTime = startTimer - endTimer;
+        totalTime = endTimer - startTimer;
+        elapsedTime =  totalTime / 1000.0;
+
         //get game results here
         getResults();
 
         // TODO:save results here?
-        //saveResults(loginLogic.getUserId(), loginLogic.getUserUsername(), word, nGuess, nClues, endTimer);
+        //saveResults(word, nGuess, nClues, endTimer);
 
+        input.close();
 
     }
 
     //save results in leaderboard
-    public void saveResults(Words word, int nGuess, int nClues, int time) {
+    public void saveResults(Words word, int nGuess, int nClues, double time) {
         try {
             Leaderboard leaderboard = new Leaderboard();
             leaderboard.setUserId(loginLogic.getUserId());

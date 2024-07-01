@@ -1,9 +1,11 @@
 package es.guesstheword.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Objects;
+@Data
 @NoArgsConstructor
 @Entity
 public class Leaderboard {
@@ -27,7 +29,7 @@ public class Leaderboard {
     private int numberOfClues;
     @Basic
     @Column(name = "time", nullable = false)
-    private int time;
+    private double time;
 
     public Leaderboard(int userId, String secretWord, String username, int numberOfGuesses, int numberOfClues, int time) {
         this.userId = userId;
@@ -35,62 +37,6 @@ public class Leaderboard {
         this.username = username;
         this.numberOfGuesses = numberOfGuesses;
         this.numberOfClues = numberOfClues;
-        this.time = time;
-    }
-
-    public int getLeaderboardId() {
-        return leaderboardId;
-    }
-
-    public void setLeaderboardId(int leaderboardId) {
-        this.leaderboardId = leaderboardId;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public String getSecretWord() {
-        return secretWord;
-    }
-
-    public void setSecretWord(String secretWord) {
-        this.secretWord = secretWord;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public int getNumberOfGuesses() {
-        return numberOfGuesses;
-    }
-
-    public void setNumberOfGuesses(int numberOfGuesses) {
-        this.numberOfGuesses = numberOfGuesses;
-    }
-
-    public int getNumberOfClues() {
-        return numberOfClues;
-    }
-
-    public void setNumberOfClues(int numberOfClues) {
-        this.numberOfClues = numberOfClues;
-    }
-
-    public int getTime() {
-        return time;
-    }
-
-    public void setTime(int time) {
         this.time = time;
     }
 
