@@ -104,6 +104,25 @@ public class GameLogic {
         userRepo.save(user);
     }
 
+    //save results in leaderboard
+    public void saveResults(Words word, int nGuess, int nClues, double time) {
+        try {
+            Leaderboard leaderboard = new Leaderboard();
+            leaderboard.setUserId(loginLogic.getUserId());
+            leaderboard.setUsername(loginLogic.getUserUsername());
+            leaderboard.setSecretWord(String.valueOf(word.getWord()));
+            leaderboard.setNumberOfGuesses(nGuess);
+            leaderboard.setNumberOfClues(nClues);
+            leaderboard.setTotalTime(time);
+
+            leaderboardRepo.save(leaderboard);
+            System.out.println("Game was Successfully saved");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public void lostGame() {
         Users user = userRepo.findByUsername(loginLogic.getUserUsername());
         if (user == null) {
@@ -159,27 +178,6 @@ public class GameLogic {
         //saveResults(word, nGuess, nClues, endTimer);
 
         input.close();
-
-    }
-
-    //save results in leaderboard
-    public void saveResults(Words word, int nGuess, int nClues, double time) {
-        try {
-            Leaderboard leaderboard = new Leaderboard();
-            leaderboard.setUserId(loginLogic.getUserId());
-            leaderboard.setUsername(loginLogic.getUserUsername());
-            leaderboard.setSecretWord(String.valueOf(word.getWord()));
-            leaderboard.setNumberOfGuesses(nGuess);
-            leaderboard.setNumberOfClues(nClues);
-            leaderboard.setTotalTime(time);
-
-            leaderboardRepo.save(leaderboard);
-            System.out.println("Game was Successfully saved");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
     }
 
 
