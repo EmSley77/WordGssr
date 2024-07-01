@@ -6,10 +6,7 @@ service class containing all logic for game
 */
 
 import es.guesstheword.entity.*;
-import es.guesstheword.repository.ClueRepo;
-import es.guesstheword.repository.ExplanationRepo;
-import es.guesstheword.repository.LeaderboardRepo;
-import es.guesstheword.repository.WordsRepo;
+import es.guesstheword.repository.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -48,12 +45,15 @@ public class GameLogic {
 
     private int nClues = 0;
 
-    public GameLogic(LeaderboardRepo leaderboardRepo, WordsRepo wordsRepo, ExplanationRepo explanationRepo, ClueRepo clueRepo, LoginLogic loginLogic) {
+    private UserRepo userRepo;
+
+    public GameLogic(LeaderboardRepo leaderboardRepo, WordsRepo wordsRepo, ExplanationRepo explanationRepo, ClueRepo clueRepo, LoginLogic loginLogic, UserRepo userRepo) {
         this.leaderboardRepo = leaderboardRepo;
         this.wordsRepo = wordsRepo;
         this.explanationRepo = explanationRepo;
         this.clueRepo = clueRepo;
         this.loginLogic = loginLogic;
+        this.userRepo = userRepo;
     }
 
 
@@ -90,6 +90,31 @@ public class GameLogic {
         System.out.println("TOTAL SECONDS: " + elapsedTime);
     }
 
+    public void victoryGame() {
+        Users user = userRepo.findByUsername(loginLogic.getUserUsername());
+        if (user == null) {
+            System.out.println("could not find user");
+            return;
+        }
+
+        user.setXp(user.getXp() + 10);
+        if (user.getXp() >= 100) {
+            user.setGameLevel(user.getGameLevel() + 1);
+        }
+        userRepo.save(user);
+    }
+
+    public void lostGame() {
+        Users user = userRepo.findByUsername(loginLogic.getUserUsername());
+        if (user == null) {
+            System.out.println("could not find user");
+            return;
+        }
+
+        user.setXp(user.getXp() - 10);
+        userRepo.save(user);
+    }
+
     //play game
     public void guessGame() {
 
@@ -109,6 +134,8 @@ public class GameLogic {
 
             if (guess.equalsIgnoreCase("END")) {
                 System.out.println("YOU LOST");
+                //remove 10 xp from user and log the user logs
+                lostGame();
                 return;
 
             }
@@ -117,9 +144,13 @@ public class GameLogic {
         } while (!guess.equalsIgnoreCase(String.valueOf(word.getWord())));
         System.out.println("YOU WON");
 
+
         endTimer = (int) System.currentTimeMillis();
         totalTime = endTimer - startTimer;
-        elapsedTime =  totalTime / 1000.0;
+        elapsedTime = totalTime / 1000.0;
+
+        //update player stats
+        victoryGame();
 
         //get game results here
         getResults();
