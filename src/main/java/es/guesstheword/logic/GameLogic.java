@@ -93,8 +93,9 @@ public class GameLogic {
 
         do {
             startTimer = (int) System.currentTimeMillis();
+            System.out.println("'END' to exit game");
             System.out.print("Guess the word: ");
-            guess = input.nextLine();
+            guess = input.nextLine().trim();
             nGuess++;
 
             if (nGuess == 3 || nGuess == 6 || nGuess == 9) {
@@ -102,9 +103,15 @@ public class GameLogic {
                 nClues++;
             }
 
+            if (guess.equalsIgnoreCase("END")) {
+                System.out.println("YOU LOST");
+                return;
+
+            }
 
             //continue game as while its not equal
-        } while (!guess.equalsIgnoreCase(String.valueOf(word)));
+        } while (!guess.equalsIgnoreCase(String.valueOf(word.getWord())));
+        System.out.println("YOU WON");
 
         endTimer = (int) System.currentTimeMillis();
         totalTime = startTimer - endTimer;
