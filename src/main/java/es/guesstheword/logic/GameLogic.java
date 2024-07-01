@@ -140,7 +140,7 @@ public class GameLogic {
             leaderboard.setSecretWord(String.valueOf(word.getWord()));
             leaderboard.setNumberOfGuesses(nGuess);
             leaderboard.setNumberOfClues(nClues);
-            leaderboard.setTime(time);
+            leaderboard.setTotalTime(time);
 
             leaderboardRepo.save(leaderboard);
             System.out.println("Game was Successfully saved");
