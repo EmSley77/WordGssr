@@ -12,7 +12,6 @@ import es.guesstheword.repository.LeaderboardRepo;
 import es.guesstheword.repository.WordsRepo;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
