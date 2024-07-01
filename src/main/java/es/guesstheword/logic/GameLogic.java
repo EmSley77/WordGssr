@@ -83,12 +83,13 @@ public class GameLogic {
     public void getResults() {
         System.out.println("GUESSES: " + nGuess);
         System.out.println("CLUES: " + nClues);
-        System.out.println("THE WORD WAS: " + word);
+        System.out.println("THE WORD WAS: " + word.getWord());
         System.out.println("TIME: " + totalTime);
     }
 
     //play game
     public void GuessGame() {
+
         prepareGame();
 
         do {
@@ -114,12 +115,13 @@ public class GameLogic {
         System.out.println("YOU WON");
 
         endTimer = (int) System.currentTimeMillis();
+        //TODO: need to fix time aswell
         totalTime = startTimer - endTimer;
         //get game results here
         getResults();
 
-        //save results here?
-        saveResults(loginLogic.getUserId(), loginLogic.getUserUsername(), word, nGuess, nClues, endTimer);
+        // TODO:save results here?
+        //saveResults(loginLogic.getUserId(), loginLogic.getUserUsername(), word, nGuess, nClues, endTimer);
 
 
     }
@@ -130,7 +132,7 @@ public class GameLogic {
             Leaderboard leaderboard = new Leaderboard();
             leaderboard.setUserId(userId);
             leaderboard.setUsername(username);
-            leaderboard.setSecretWord(String.valueOf(word));
+            leaderboard.setSecretWord(String.valueOf(word.getWord()));
             leaderboard.setNumberOfGuesses(nGuess);
             leaderboard.setNumberOfClues(nClues);
             leaderboard.setTime(time);

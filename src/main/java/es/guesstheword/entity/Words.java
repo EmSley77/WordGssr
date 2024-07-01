@@ -1,9 +1,10 @@
 package es.guesstheword.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Objects;
-
+@Data
 @Entity
 public class Words {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,32 +15,5 @@ public class Words {
     @Column(name = "word", nullable = false, length = 50)
     private String word;
 
-    public int getWordId() {
-        return wordId;
-    }
 
-    public void setWordId(int wordId) {
-        this.wordId = wordId;
-    }
-
-    public String getWord() {
-        return word;
-    }
-
-    public void setWord(String word) {
-        this.word = word;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Words words = (Words) o;
-        return wordId == words.wordId && Objects.equals(word, words.word);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(wordId, word);
-    }
 }
