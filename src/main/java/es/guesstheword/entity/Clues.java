@@ -15,8 +15,8 @@ public class Clues {
     @Column(name = "clue_id", nullable = false)
     private int clueId;
     @Basic
-    @Column(name = "word", nullable = false, length = 45)
-    private String word;
+    @Column(name = "word_id", nullable = false)
+    private int wordId;
     @Basic
     @Column(name = "clue", nullable = false, length = 200)
     private String clue;

@@ -62,15 +62,15 @@ public class GameLogic {
     }
 
     //get word explanation
-    public Explanation getWordExplanation(Words word) {
-        return explanationRepo.findExplanationByWordId(word.getWordId());
+    public String getWordExplanation(Words word) {
+        return explanationRepo.findExplanationByWordId(word.getWordId()).getWordExplanation();
     }
 
     //get random clues
-    public Clues getWordClue(Words word) {
+    public String getWordClue(Words word) {
         Random random = new Random();
-        List<Clues> clues = clueRepo.findCluesByWord(String.valueOf(word));
-        return clues.get(random.nextInt(clues.size()));
+        List<Clues> clues = clueRepo.findCluesByWordId(word.getWordId());
+        return clues.get(random.nextInt(clues.size())).getClue();
     }
 
     //prepare game, word mm

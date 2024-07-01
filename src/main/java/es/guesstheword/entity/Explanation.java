@@ -2,9 +2,11 @@ package es.guesstheword.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
+@NoArgsConstructor
 @Data
 @Entity
 public class Explanation {
@@ -16,7 +18,7 @@ public class Explanation {
     @Column(name = "word_id", nullable = false)
     private int wordId;
     @Basic
-    @Column(name = "word_explanation", nullable = false)
-    private int wordExplanation;
+    @Column(name = "word_explanation", nullable = false, length = 100)
+    private String wordExplanation;
 
 }
