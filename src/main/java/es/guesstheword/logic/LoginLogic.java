@@ -17,17 +17,13 @@ public class LoginLogic {
 
     private Scanner input = new Scanner(System.in);
 
+    private UserLogic userLogic;
+
     private UserRepo userRepo;
 
-
-    @Getter
-    private int userId;
-
-    @Getter
-    private String userUsername;
-
-    public LoginLogic(UserRepo userRepo) {
+    public LoginLogic(UserRepo userRepo, UserLogic userLogic) {
         this.userRepo = userRepo;
+        this.userLogic = userLogic;
     }
 
     //LOGIN
@@ -45,8 +41,8 @@ public class LoginLogic {
         }
 
         if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
-            userId = user.getUserId();
-            userUsername = user.getUsername();
+            userLogic.userId = user.getUserId();
+            userLogic.userUsername = user.getUsername();
             System.out.println("SUCCESSFULLY LOGGED IN");
             return "success";
         }

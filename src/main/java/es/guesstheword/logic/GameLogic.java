@@ -17,35 +17,24 @@ import java.util.Scanner;
 public class GameLogic {
 
     private LeaderboardRepo leaderboardRepo;
-
     private WordsRepo wordsRepo;
-
     private ExplanationRepo explanationRepo;
-
     private ClueRepo clueRepo;
+    private UserRepo userRepo;
 
     private UserLogic userLogic;
 
-    private String guess;
-
-    private Words word;
-
-    // TODO: close scanner after game ends
     private Scanner input = new Scanner(System.in);
 
+    private String guess;
+    private Words word;
     private int nGuess = 0;
-
     private int startTimer;
-
     private int endTimer;
-
     private int totalTime;
-
     private double elapsedTime;
-
     private int nClues = 0;
 
-    private UserRepo userRepo;
 
     public GameLogic(LeaderboardRepo leaderboardRepo, WordsRepo wordsRepo, ExplanationRepo explanationRepo, ClueRepo clueRepo, UserLogic userLogic, UserRepo userRepo) {
         this.leaderboardRepo = leaderboardRepo;
@@ -174,8 +163,8 @@ public class GameLogic {
         //get game results here
         getResults();
 
-        // TODO:save results here?
-        //saveResults(word, nGuess, nClues, endTimer);
+        //save into leaderboard entity
+        saveResults(word, nGuess, nClues, endTimer);
 
         input.close();
     }

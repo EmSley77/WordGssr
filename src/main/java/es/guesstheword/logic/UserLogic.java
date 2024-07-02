@@ -20,10 +20,10 @@ public class UserLogic {
     private UserRepo userRepo;
 
     @Getter
-    private int userId;
+    protected int userId;
 
     @Getter
-    private String userUsername;
+    protected String userUsername;
 
     // TODO: close scanner after done with login methods
     private Scanner input = new Scanner(System.in);
