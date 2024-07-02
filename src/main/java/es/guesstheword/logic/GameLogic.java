@@ -127,9 +127,9 @@ public class GameLogic {
     public void guessGame() {
 
         prepareGame();
+        startTimer = (int) System.currentTimeMillis();
 
         do {
-            startTimer = (int) System.currentTimeMillis();
             System.out.println("'END' to exit game");
             System.out.print("Guess the word: ");
             guess = input.nextLine().trim();
@@ -163,10 +163,8 @@ public class GameLogic {
         //get game results here
         getResults();
 
-        //save into leaderboard entity
-        saveResults(word, nGuess, nClues, endTimer);
-
-        input.close();
+        //save into leaderboard entity, maybe remove time from database
+        //saveResults(word, nGuess, nClues, endTimer);
     }
 
 
