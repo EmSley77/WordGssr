@@ -17,9 +17,9 @@ public class UserService {
         this.userLogic = userLogic;
     }
 
-    public void login() {
+    /*public void login() {
         userLogic.login();
-    }
+    }*/
 
     public void createAccount() {
         userLogic.createAccount();
