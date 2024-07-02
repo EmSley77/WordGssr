@@ -5,6 +5,8 @@ Emanuel sleyman
 a class for all menu logic
 */
 
+import es.guesstheword.service.GameService;
+import es.guesstheword.service.LoginService;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
@@ -12,8 +14,19 @@ import java.util.Scanner;
 @Component
 public class MenuLogic {
 
+    private GameService gameService;
+
+    private LoginService loginService;
+
+    public MenuLogic(GameService gameService, LoginService loginService) {
+        this.gameService = gameService;
+        this.loginService = loginService;
+    }
+
     // TODO: close scanner after done with menu
+
     private Scanner input = new Scanner(System.in);
+
     private int option;
     // all service classes here
 
@@ -27,11 +40,11 @@ public class MenuLogic {
 
             option = input.nextInt();
             switch (option) {
-             /*
+
                 case 1 -> ;
                 case 2 -> ;
                 case 3 -> ;
-              */
+
             }
         } while (option != 0);
     }
