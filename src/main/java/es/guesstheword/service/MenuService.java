@@ -18,6 +18,6 @@ public class MenuService {
     }
 
     public void launcher() {
-        menuLogic.startMenu();
+        menuLogic.loginMenu();
     }
 }
