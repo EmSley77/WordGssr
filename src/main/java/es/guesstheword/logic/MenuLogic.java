@@ -6,7 +6,6 @@ a class for all menu logic
 */
 
 import es.guesstheword.service.GameService;
-import es.guesstheword.service.LoginService;
 import es.guesstheword.service.UserService;
 import org.springframework.stereotype.Component;
 
@@ -31,7 +30,7 @@ public class MenuLogic {
 
     private Scanner input = new Scanner(System.in);
 
-    private int option;
+    private String option;
     // all service classes here
 
     //sign in menu, must pass login to get to start menu
@@ -42,11 +41,11 @@ public class MenuLogic {
             System.out.println("2. CREATE ACCOUNT");
             System.out.print("OPTION: ");
 
-            option = input.nextInt();
+            option = input.nextLine().trim();
             switch (option) {
-                case 0 -> System.exit(0);
+                case "0" -> System.exit(0);
 
-                case 1 -> {
+                case "1" -> {
 
                     String login =  loginLogic.login();
                     if (login.equals("success")) {
@@ -54,7 +53,7 @@ public class MenuLogic {
                     }
                     loginMenu();
                 }
-                case 2 -> userService.createAccount();
+                case "2" -> userService.createAccount();
                 default -> System.out.println("INPUT A VALID NUMBER");
 
             }
@@ -71,26 +70,26 @@ public class MenuLogic {
             System.out.println("4. DELETE ACCOUNT");
             System.out.print("OPTION: ");
 
-            option = input.nextInt();
+            option = input.nextLine().trim();
             switch (option) {
 
-                case 0 -> {
+                case "0" -> {
                     userService.resetSession();
                     loginMenu();
                 }
-                case 1 -> gameService.playGame();
+                case "1" -> gameService.playGame();
 //                case 2 -> ;
 //                case 3 -> ;
 //                case 4 -> ;
-                case 5 -> {
+                case "5" -> {
                     userService.deleteAccount();
                     userService.resetSession();
                     loginMenu();
                 }
 
-                default -> throw new IllegalStateException("Unexpected value: " + option);
+                default -> System.out.println("INPUT A VALID NUMBER");
             }
-        } while (option != 0);
+        } while (!option.equals("0"));
     }
 
 }

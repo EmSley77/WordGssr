@@ -19,7 +19,6 @@ public class LoginLogic {
 
     private UserRepo userRepo;
 
-    private UserLogic userLogic;
 
     @Getter
     private int userId;
@@ -27,9 +26,8 @@ public class LoginLogic {
     @Getter
     private String userUsername;
 
-    public LoginLogic(UserRepo userRepo, UserLogic userLogic) {
+    public LoginLogic(UserRepo userRepo) {
         this.userRepo = userRepo;
-        this.userLogic = userLogic;
     }
 
     //LOGIN
