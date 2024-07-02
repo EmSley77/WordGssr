@@ -31,7 +31,7 @@ public class MenuLogic {
     // all service classes here
 
     //sign in menu, must pass login to get to start menu
-    public void LoginMenu() {
+    public void loginMenu() {
         do {
             System.out.println("0. END PROGRAM");
             System.out.println("1. SIGN IN");
@@ -40,13 +40,17 @@ public class MenuLogic {
 
             option = input.nextInt();
             switch (option) {
+                case 0 -> System.exit(0);
 
-                case 1 -> ;
-                case 2 -> ;
-                case 3 -> ;
+                case 1 -> {
+                    loginService.login();
+                    startMenu();
+                }
+                case 2 -> loginService.createAccount();
+                default -> System.out.println("INPUT A VALID NUMBER");
 
             }
-        } while (option != 0);
+        } while (true);
     }
 
     //startMenu after successful login
@@ -61,13 +65,22 @@ public class MenuLogic {
 
             option = input.nextInt();
             switch (option) {
-              /*
-                case 1 -> ;
-                case 2 -> ;
-                case 3 -> ;
-                case 4 -> ;
-                case 5 -> ;
-               */
+
+                case 0 -> {
+                    loginService.resetSession();
+                    loginMenu();
+                }
+                case 1 -> gameService.playGame();
+//                case 2 -> ;
+//                case 3 -> ;
+//                case 4 -> ;
+                case 5 -> {
+                    loginService.deleteAccount();
+                    loginService.resetSession();
+                    loginMenu();
+                }
+
+                default -> throw new IllegalStateException("Unexpected value: " + option);
             }
         } while (option != 0);
     }
