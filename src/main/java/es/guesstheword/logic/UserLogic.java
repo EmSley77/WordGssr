@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 @Component
-public class LoginLogic {
+public class UserLogic {
 
     private UserRepo userRepo;
 
@@ -28,7 +28,7 @@ public class LoginLogic {
     // TODO: close scanner after done with login methods
     private Scanner input = new Scanner(System.in);
 
-    public LoginLogic(UserRepo userRepo) {
+    public UserLogic(UserRepo userRepo) {
         this.userRepo = userRepo;
     }
 

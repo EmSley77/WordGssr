@@ -5,32 +5,32 @@ Emanuel sleyman
 a service class for all login logic and account managing
 */
 
-import es.guesstheword.logic.LoginLogic;
+import es.guesstheword.logic.UserLogic;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LoginService {
+public class UserService {
 
-    private LoginLogic loginLogic;
+    private UserLogic userLogic;
 
-    public LoginService(LoginLogic loginLogic) {
-        this.loginLogic = loginLogic;
+    public UserService(UserLogic userLogic) {
+        this.userLogic = userLogic;
     }
 
     public void login() {
-        loginLogic.login();
+        userLogic.login();
     }
 
     public void createAccount() {
-        loginLogic.createAccount();
+        userLogic.createAccount();
     }
 
     public void deleteAccount() {
-        loginLogic.deleteAccount();
+        userLogic.deleteAccount();
     }
 
     //after signing out to reset 'sessionId'
     public void resetSession() {
-        loginLogic.resetSessionId();
+        userLogic.resetSessionId();
     }
 }

@@ -24,7 +24,7 @@ public class GameLogic {
 
     private ClueRepo clueRepo;
 
-    private LoginLogic loginLogic;
+    private UserLogic userLogic;
 
     private String guess;
 
@@ -47,12 +47,12 @@ public class GameLogic {
 
     private UserRepo userRepo;
 
-    public GameLogic(LeaderboardRepo leaderboardRepo, WordsRepo wordsRepo, ExplanationRepo explanationRepo, ClueRepo clueRepo, LoginLogic loginLogic, UserRepo userRepo) {
+    public GameLogic(LeaderboardRepo leaderboardRepo, WordsRepo wordsRepo, ExplanationRepo explanationRepo, ClueRepo clueRepo, UserLogic userLogic, UserRepo userRepo) {
         this.leaderboardRepo = leaderboardRepo;
         this.wordsRepo = wordsRepo;
         this.explanationRepo = explanationRepo;
         this.clueRepo = clueRepo;
-        this.loginLogic = loginLogic;
+        this.userLogic = userLogic;
         this.userRepo = userRepo;
     }
 
@@ -91,7 +91,7 @@ public class GameLogic {
     }
 
     public void victoryGame() {
-        Users user = userRepo.findByUsername(loginLogic.getUserUsername());
+        Users user = userRepo.findByUsername(userLogic.getUserUsername());
         if (user == null) {
             System.out.println("could not find user");
             return;
@@ -108,8 +108,8 @@ public class GameLogic {
     public void saveResults(Words word, int nGuess, int nClues, double time) {
         try {
             Leaderboard leaderboard = new Leaderboard();
-            leaderboard.setUserId(loginLogic.getUserId());
-            leaderboard.setUsername(loginLogic.getUserUsername());
+            leaderboard.setUserId(userLogic.getUserId());
+            leaderboard.setUsername(userLogic.getUserUsername());
             leaderboard.setSecretWord(String.valueOf(word.getWord()));
             leaderboard.setNumberOfGuesses(nGuess);
             leaderboard.setNumberOfClues(nClues);
@@ -124,7 +124,7 @@ public class GameLogic {
 
 
     public void lostGame() {
-        Users user = userRepo.findByUsername(loginLogic.getUserUsername());
+        Users user = userRepo.findByUsername(userLogic.getUserUsername());
         if (user == null) {
             System.out.println("could not find user");
             return;
