@@ -30,14 +30,18 @@ public class Leaderboard {
     @Basic
     @Column(name = "time", nullable = false)
     private double totalTime;
+    @Basic
+    @Column(name = "win_loss", nullable = false, length = 45)
+    private String winLoss;
 
-    public Leaderboard(int userId, String secretWord, String username, int numberOfGuesses, int numberOfClues, int totalTime) {
+    public Leaderboard(int userId, String secretWord, String username, int numberOfGuesses, int numberOfClues, int totalTime, String winLoss) {
         this.userId = userId;
         this.secretWord = secretWord;
         this.username = username;
         this.numberOfGuesses = numberOfGuesses;
         this.numberOfClues = numberOfClues;
         this.totalTime = totalTime;
+        this.winLoss = winLoss;
     }
 
 }

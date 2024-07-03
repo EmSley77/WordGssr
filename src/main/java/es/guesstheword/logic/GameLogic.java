@@ -90,11 +90,13 @@ public class GameLogic {
         if (user.getXp() >= 100) {
             user.setGameLevel(user.getGameLevel() + 1);
         }
+
+
         userRepo.save(user);
     }
 
-    //save results in leaderboard
-    public void saveResults(Words word, int nGuess, int nClues, double time) {
+    //save won results in leaderboard
+    public void saveWonResults(Words word, int nGuess, int nClues, double time) {
         try {
             Leaderboard leaderboard = new Leaderboard();
             leaderboard.setUserId(userLogic.getUserId());
@@ -103,7 +105,24 @@ public class GameLogic {
             leaderboard.setNumberOfGuesses(nGuess);
             leaderboard.setNumberOfClues(nClues);
             leaderboard.setTotalTime(time);
-
+            leaderboard.setWinLoss("WON");
+            leaderboardRepo.save(leaderboard);
+            System.out.println("Game was Successfully saved");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    //save lost results in leaderboard
+    public void saveLostResults(Words word, int nGuess, int nClues, double time) {
+        try {
+            Leaderboard leaderboard = new Leaderboard();
+            leaderboard.setUserId(userLogic.getUserId());
+            leaderboard.setUsername(userLogic.getUserUsername());
+            leaderboard.setSecretWord(String.valueOf(word.getWord()));
+            leaderboard.setNumberOfGuesses(nGuess);
+            leaderboard.setNumberOfClues(nClues);
+            leaderboard.setTotalTime(time);
+            leaderboard.setWinLoss("LOST");
             leaderboardRepo.save(leaderboard);
             System.out.println("Game was Successfully saved");
         } catch (Exception e) {
@@ -144,6 +163,7 @@ public class GameLogic {
                 System.out.println("YOU LOST");
                 //remove 10 xp from user and log the user logs
                 lostGame();
+                saveLostResults(word,nGuess, nClues, elapsedTime);
                 return;
 
             }
@@ -164,7 +184,7 @@ public class GameLogic {
         getResults();
 
         //save into leaderboard entity, maybe remove time from database
-        //saveResults(word, nGuess, nClues, endTimer);
+        saveWonResults(word, nGuess, nClues, elapsedTime);
     }
 
 
