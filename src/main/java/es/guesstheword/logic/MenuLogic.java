@@ -6,6 +6,7 @@ a class for all menu logic
 */
 
 import es.guesstheword.service.GameService;
+import es.guesstheword.service.LeaderboardService;
 import es.guesstheword.service.UserService;
 import org.springframework.stereotype.Component;
 
@@ -20,10 +21,13 @@ public class MenuLogic {
 
     private LoginLogic loginLogic;
 
-    public MenuLogic(GameService gameService, UserService userService, LoginLogic loginLogic) {
+    private LeaderboardService leaderboardService;
+
+    public MenuLogic(GameService gameService, UserService userService, LoginLogic loginLogic, LeaderboardService leaderboardService) {
         this.gameService = gameService;
         this.userService = userService;
         this.loginLogic = loginLogic;
+        this.leaderboardService = leaderboardService;
     }
 
     // TODO: close scanner after done with menu
@@ -47,7 +51,7 @@ public class MenuLogic {
 
                 case "1" -> {
 
-                    String login =  loginLogic.login();
+                    String login = loginLogic.login();
                     if (login.equals("success")) {
                         startMenu();
                     }
@@ -80,7 +84,7 @@ public class MenuLogic {
                 }
                 case "1" -> gameService.playGame();
 //                case 2 -> ;
-//                case 3 -> ;
+                case "3" -> leaderboardService.getLeaderboard();
 //                case 4 -> ;
                 case "5" -> {
                     userService.deleteAccount();
