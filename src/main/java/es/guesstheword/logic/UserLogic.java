@@ -67,6 +67,20 @@ public class UserLogic {
 
     }
 
+    //view these stats after signing in
+    public void userStats(){
+        Users user = userRepo.findUsersByUserId(userId);
+        if (user == null) {
+            return;
+        }
+
+        System.out.println("_____________________");
+        System.out.println(user.getUsername());
+        System.out.println(user.getGameLevel());
+        System.out.println(user.getXp());
+        System.out.println(user.getRegistrationDate());
+        System.out.println("_____________________");
+    }
 
 
     //delete account
