@@ -17,9 +17,10 @@ public class UserService {
         this.userLogic = userLogic;
     }
 
-    /*public void login() {
-        userLogic.login();
-    }*/
+    //level, xp and username
+    public void getUserInfo() {
+        userLogic.userStats();
+    }
 
     public void createAccount() {
         userLogic.createAccount();

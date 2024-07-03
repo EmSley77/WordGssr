@@ -63,6 +63,7 @@ public class MenuLogic {
     //startMenu after successful login
     public void startMenu() {
         do {
+            userService.getUserInfo();
             System.out.println("0. SIGN OUT");
             System.out.println("1. PLAY GAME");
             System.out.println("2. MY STATISTICS");

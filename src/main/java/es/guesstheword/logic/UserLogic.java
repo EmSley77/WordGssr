@@ -68,17 +68,17 @@ public class UserLogic {
     }
 
     //view these stats after signing in
-    public void userStats(){
+    public void userStats() {
         Users user = userRepo.findUsersByUserId(userId);
         if (user == null) {
             return;
         }
 
         System.out.println("_____________________");
-        System.out.println(user.getUsername());
-        System.out.println(user.getGameLevel());
-        System.out.println(user.getXp());
-        System.out.println(user.getRegistrationDate());
+        System.out.println("USERNAME: " + user.getUsername());
+        System.out.println("LEVEL: " + user.getGameLevel());
+        System.out.println("XP: " + user.getXp());
+        System.out.println("REGISTERED: " + user.getRegistrationDate());
         System.out.println("_____________________");
     }
 
