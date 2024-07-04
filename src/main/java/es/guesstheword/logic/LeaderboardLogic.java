@@ -11,7 +11,6 @@ import es.guesstheword.repository.LeaderboardRepo;
 import es.guesstheword.repository.UserRepo;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.List;
 
 
@@ -20,10 +19,12 @@ public class LeaderboardLogic {
 
     private UserRepo userRepo;
     private LeaderboardRepo leaderboardRepo;
+    private UserLogic userLogic;
 
-    public LeaderboardLogic(UserRepo userRepo, LeaderboardRepo leaderboardRepo) {
+    public LeaderboardLogic(UserRepo userRepo, LeaderboardRepo leaderboardRepo, UserLogic userLogic) {
         this.userRepo = userRepo;
         this.leaderboardRepo = leaderboardRepo;
+        this.userLogic = userLogic;
     }
 
 
@@ -75,5 +76,28 @@ public class LeaderboardLogic {
 
 
         }
+    }
+
+    //get user single statistics
+    public void getUserStats() {
+        List<Leaderboard> leaderboards = leaderboardRepo.findAll();
+        if (leaderboards.isEmpty()) {
+            return;
+        }
+
+        Users user = userRepo.findUsersByUserId(userLogic.getUserId());
+        if (user == null) {
+
+        }
+
+        for (Leaderboard leaderboard : leaderboards) {
+
+            if (userLogic.getUserId() == leaderboard.getUserId()) {
+
+
+            }
+        }
+
+
     }
 }
