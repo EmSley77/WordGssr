@@ -74,8 +74,6 @@ public class LeaderboardLogic {
             System.out.println("GAMES LOST: " + losses);
             System.out.println("AVERAGE GUESS PER GAME: " + avgGuess);
             System.out.println("TOTAL GAMES PLAYED: " + gamesPlayed);
-
-
         }
     }
 
@@ -114,11 +112,15 @@ public class LeaderboardLogic {
             avgGuess += leaderboard.getNumberOfGuesses() / gamesPlayed;
         }
         System.out.println("______________________________________");
+        System.out.println("USERNAME: " + user.getUsername());
         System.out.println("LEVEL: " + user.getGameLevel());
+        System.out.println("XP: " + user.getXp());
+        System.out.println("REGISTERED: " + user.getRegistrationDate());
         System.out.println("GAMES WON: " + wins);
         System.out.println("GAMES LOST: " + losses);
         System.out.println("AVERAGE GUESSES PER GAME: " + avgGuess);
         System.out.println("TOTAL GAMES PLAYED: " + gamesPlayed);
+        System.out.println("_____________________");
 
 
     }

@@ -34,4 +34,8 @@ public class UserService {
     public void resetSession() {
         userLogic.resetSessionId();
     }
+
+    public int getUserRole() {
+        return userLogic.getUserRole();
+    }
 }

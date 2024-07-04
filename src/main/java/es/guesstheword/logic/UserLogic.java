@@ -69,6 +69,7 @@ public class UserLogic {
 
     //view these stats after signing in
     public void userStats() {
+
         Users user = userRepo.findUsersByUserId(userId);
         if (user == null) {
             return;
@@ -110,4 +111,8 @@ public class UserLogic {
         userId = 0;
     }
 
+    //use when user or admin signs in for diff menus
+    public int getUserRole() {
+        return userRepo.findUsersByUserId(getUserId()).getRole();
+    }
 }
