@@ -52,8 +52,10 @@ public class MenuLogic {
                 case "1" -> {
 
                     String login = loginLogic.login();
-                    if (login.equals("success")) {
-                        startMenu();
+                    if (login.equals("success") && userService.getUserRole() == 0) {
+                        userMenu();
+                    } else if (login.equals("success") && userService.getUserRole() == 1) {
+                        //adminMenu();
                     }
                     loginMenu();
                 }
@@ -65,7 +67,7 @@ public class MenuLogic {
     }
 
     //startMenu after successful login
-    public void startMenu() {
+    public void userMenu() {
         do {
             System.out.println("0. SIGN OUT");
             System.out.println("1. PLAY GAME");
