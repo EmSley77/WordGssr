@@ -29,6 +29,7 @@ public class LeaderboardLogic {
 
 
     public void getLeaderboard() {
+
         List<Leaderboard> leaderboards = leaderboardRepo.findAll();
         if (leaderboards.isEmpty()) {
             return;
@@ -113,11 +114,10 @@ public class LeaderboardLogic {
             avgGuess += leaderboard.getNumberOfGuesses() / gamesPlayed;
         }
         System.out.println("______________________________________");
-        System.out.println("USERNAME: " + user.getUsername());
         System.out.println("LEVEL: " + user.getGameLevel());
-        System.out.println("WINS: " + wins);
+        System.out.println("GAMES WON: " + wins);
         System.out.println("GAMES LOST: " + losses);
-        System.out.println("AVERAGE GUESS PER GAME: " + avgGuess);
+        System.out.println("AVERAGE GUESSES PER GAME: " + avgGuess);
         System.out.println("TOTAL GAMES PLAYED: " + gamesPlayed);
 
 

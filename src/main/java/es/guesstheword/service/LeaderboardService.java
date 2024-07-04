@@ -20,4 +20,8 @@ public class LeaderboardService {
     public void getLeaderboard() {
         leaderboardLogic.getLeaderboard();
     }
+
+    public void getUserStatistics() {
+        leaderboardLogic.getUserStats();
+    }
 }

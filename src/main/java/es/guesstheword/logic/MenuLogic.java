@@ -83,9 +83,9 @@ public class MenuLogic {
                     loginMenu();
                 }
                 case "1" -> gameService.playGame();
-//                case 2 -> ;
+                case "2" -> leaderboardService.getUserStatistics();
                 case "3" -> leaderboardService.getLeaderboard();
-//                case 4 -> ;
+//              case 4 -> ;
                 case "5" -> {
                     userService.deleteAccount();
                     userService.resetSession();
