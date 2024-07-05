@@ -30,6 +30,13 @@ public class UserService {
         userLogic.deleteAccount();
     }
 
+    public void editUsername() {
+        userLogic.editUsername();
+    }
+
+    public void editPassword() {
+        userLogic.editPassword();
+    }
     //after signing out to reset 'sessionId'
     public void resetSession() {
         userLogic.resetSessionId();

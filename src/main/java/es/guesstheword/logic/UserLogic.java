@@ -140,8 +140,6 @@ public class UserLogic {
     public void editPassword() {
         System.out.println("2 TO EXIT EDIT PAGE");
         System.out.print("ENTER NEW PASSWORD: ");
-        System.out.print("REPEAT NEW PASSWORD: ");
-
         String password = "";
         String repeatPassword = "";
         while (password.isEmpty()) {
@@ -151,6 +149,8 @@ public class UserLogic {
                 return;
             }
         }
+        System.out.println();
+        System.out.print("REPEAT NEW PASSWORD: ");
         while (repeatPassword.isEmpty()) {
             repeatPassword = input.nextLine().trim();
             if (repeatPassword.equals("2")) {

@@ -26,6 +26,8 @@ public class MenuLogic {
 
     private AdminService adminService;
 
+    private Scanner input = new Scanner(System.in);
+
     public MenuLogic(GameService gameService, UserService userService, LoginLogic loginLogic, LeaderboardService leaderboardService, AdminService adminService) {
         this.gameService = gameService;
         this.userService = userService;
@@ -35,8 +37,6 @@ public class MenuLogic {
     }
 
     // TODO: close scanner after done with menu
-
-    private Scanner input = new Scanner(System.in);
 
     private String option;
     // all service classes here
@@ -77,6 +77,7 @@ public class MenuLogic {
             System.out.println("1. PLAY GAME");
             System.out.println("2. MY STATISTICS");
             System.out.println("3. VIEW LEADERBOARD");
+            System.out.println("4. EDIT ACCOUNT");
             System.out.println("4. DELETE ACCOUNT");
             System.out.print("OPTION: ");
 
@@ -90,7 +91,22 @@ public class MenuLogic {
                 case "1" -> gameService.playGame();
                 case "2" -> leaderboardService.getUserStatistics();
                 case "3" -> leaderboardService.getLeaderboard();
-//              case 4 -> ;
+                case "4" -> {
+                    System.out.println("0. RETURN TO MAIN MENU");
+                    System.out.println("1. EDIT USERNAME");
+                    System.out.println("2. EDIT PASSWORD");
+                    System.out.print("OPTION: ");
+
+                    String in = input.nextLine().trim();
+                    switch (in) {
+                        case "1" -> userService.editUsername();
+                        case "2" -> userService.editPassword();
+                        case "0" -> {
+                            userMenu();
+                        }
+                    }
+
+                }
                 case "5" -> {
                     userService.deleteAccount();
                     userService.resetSession();
