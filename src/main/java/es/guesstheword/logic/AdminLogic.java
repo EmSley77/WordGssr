@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 @Component
@@ -60,5 +61,24 @@ public class AdminLogic {
     }
 
 
-    // TODO: create word, delete word, view all words, search for words,
+    // TODO: create word, delete word, view all words, search for words
+
+    //TODO: search and get users
+    public List<Users> getAllUsers() {
+        return userRepo.findAll();
+    }
+
+    public void getBySearch() {
+        System.out.print("SEARCH: ");
+        String search = "";
+        while (search.isEmpty()) {
+            search = input.nextLine().trim();
+            if (search.equals("2")) {
+                return;
+            }
+        }
+        userRepo.findUsersByUsernameContainingOrNameContaining(search, search);
+    }
+
+
 }
