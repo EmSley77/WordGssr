@@ -28,4 +28,9 @@ public class AdminService {
     public void createAdmin() {
         adminLogic.createAdminAccount();
     }
+
+    //delete user, test first if working
+    public void deleteUser() {
+        adminLogic.deleteUser();
+    }
 }

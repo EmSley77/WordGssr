@@ -8,6 +8,7 @@ this class is for admin methods
 import es.guesstheword.entity.Users;
 import es.guesstheword.repository.UserRepo;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -99,5 +100,21 @@ public class AdminLogic {
 
     }
 
+    //delete user
+    @Transactional
+    public void deleteUser() {
+        System.out.println("2. EXIT DELETE PAGE");
+        System.out.print("ENTER ID OR USERNAME: ");
+        String search = "";
+        while (search.isEmpty()) {
+            search = input.nextLine().trim();
+            if (search.equals("2")) {
+                return;
+            }
+        }
+
+        userRepo.deleteByUsernameOrUserId(search, Integer.parseInt(search));
+        System.out.println("SUCCESSFULLY DELETED USER WITH ID OR USERNAME: " + search);
+    }
 
 }
