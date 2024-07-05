@@ -104,19 +104,24 @@ public class AdminLogic {
     //delete user
     @Transactional
     public void deleteUser() {
-        System.out.println("2. EXIT DELETE PAGE");
-        System.out.print("ENTER ID OR USERNAME: ");
-        String search = "";
-        while (search.isEmpty()) {
-            search = input.nextLine().trim();
-            if (search.equals("2")) {
-                System.out.println("EXITED OUT OF DELETE PAGE");
-                return;
+        try {
+            System.out.println("'EXIT' TO EXIT DELETE PAGE");
+            System.out.print("ENTER ID OR USERNAME: ");
+            String search = "";
+            while (search.isEmpty()) {
+                search = input.nextLine().trim();
+                if (search.equalsIgnoreCase("EXIT")) {
+                    System.out.println("EXITED OUT OF DELETE PAGE");
+                    return;
+                }
             }
+
+            userRepo.deleteByUsernameOrUserId(search, Integer.parseInt(search));
+            System.out.println("SUCCESSFULLY DELETED USER WITH ID OR USERNAME: " + search);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        userRepo.deleteByUsernameOrUserId(search, Integer.parseInt(search));
-        System.out.println("SUCCESSFULLY DELETED USER WITH ID OR USERNAME: " + search);
     }
 
 

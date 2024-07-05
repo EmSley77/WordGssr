@@ -106,6 +106,76 @@ public class UserLogic {
         //make sure to direct back to login page after deleting user account
     }
 
+    //edit username
+    public void editUsername() {
+        System.out.println("2 TO EXIT EDIT PAGE");
+        System.out.print("ENTER NEW USERNAME: ");
+        String username = "";
+        while (username.isEmpty()) {
+            username = input.nextLine().trim();
+            if (username.equals("2")) {
+                System.out.println("EXITING EDIT USERNAME PAGE");
+                return;
+            }
+        }
+
+        Users user = userRepo.findUsersByUserId(userId);
+        if (user == null) {
+            System.out.println("COULD NOT FIND USER TO EDIT");
+            return;
+        }
+
+        if (userRepo.findByUsername(username) != null) {
+            System.out.println("USERNAME ALREADY IN USE");
+            return;
+        }
+
+        user.setUsername(username);
+        userRepo.save(user);
+        System.out.println("SUCCESSFULLY UPDATED USERNAME");
+
+    }
+
+    //edit PASSWORD
+    public void editPassword() {
+        System.out.println("2 TO EXIT EDIT PAGE");
+        System.out.print("ENTER NEW PASSWORD: ");
+        System.out.print("REPEAT NEW PASSWORD: ");
+
+        String password = "";
+        String repeatPassword = "";
+        while (password.isEmpty()) {
+            password = input.nextLine().trim();
+            if (password.equals("2")) {
+                System.out.println("EXITING EDIT PASSWORD PAGE");
+                return;
+            }
+        }
+        while (repeatPassword.isEmpty()) {
+            repeatPassword = input.nextLine().trim();
+            if (repeatPassword.equals("2")) {
+                System.out.println("EXITING EDIT PASSWORD PAGE");
+                return;
+            }
+        }
+
+        Users user = userRepo.findUsersByUserId(userId);
+        if (user == null) {
+            System.out.println("COULD NOT FIND USER TO EDIT");
+            return;
+        }
+
+        if (repeatPassword.equals(password)) {
+            user.setPassword(password);
+            userRepo.save(user);
+            System.out.println("SUCCESSFULLY UPDATED USERNAME");
+        } else {
+            System.out.println("COULD NOT UPDATE PASSWORD, TRY AGAIN");
+        }
+
+
+    }
+
     //reset sessionId after signing out
     public void resetSessionId() {
         userId = 0;
