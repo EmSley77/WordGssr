@@ -64,11 +64,21 @@ public class AdminLogic {
     // TODO: create word, delete word, view all words, search for words
 
     //TODO: search and get users
-    public List<Users> getAllUsers() {
-        return userRepo.findAll();
+    public void getAllUsers() {
+        List<Users> usersList =  userRepo.findAll();
+
+        if (!usersList.isEmpty()) {
+            for (Users users : usersList) {
+                System.out.println(users);
+            }
+        } else {
+            System.out.println("0 USERS FOUND");
+            return;
+        }
     }
 
     public void getBySearch() {
+        System.out.println("2. EXIT SEARCH");
         System.out.print("SEARCH: ");
         String search = "";
         while (search.isEmpty()) {
@@ -77,7 +87,16 @@ public class AdminLogic {
                 return;
             }
         }
-        userRepo.findUsersByUsernameContainingOrNameContaining(search, search);
+        List<Users> usersList = userRepo.findUsersByUsernameContainingOrNameContaining(search, search);
+        if (!usersList.isEmpty()) {
+            for (Users user: usersList) {
+                System.out.println(user);
+            }
+        } else {
+            System.out.println("0 USERS FOUND");
+            return;
+        }
+
     }
 
 
