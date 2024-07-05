@@ -85,6 +85,7 @@ public class AdminLogic {
         while (search.isEmpty()) {
             search = input.nextLine().trim();
             if (search.equals("2")) {
+                System.out.println("EXITED OUT OF SEARCH PAGE");
                 return;
             }
         }
@@ -109,6 +110,7 @@ public class AdminLogic {
         while (search.isEmpty()) {
             search = input.nextLine().trim();
             if (search.equals("2")) {
+                System.out.println("EXITED OUT OF DELETE PAGE");
                 return;
             }
         }
