@@ -5,6 +5,7 @@ Emanuel sleyman
 a class for all menu logic
 */
 
+import es.guesstheword.service.AdminService;
 import es.guesstheword.service.GameService;
 import es.guesstheword.service.LeaderboardService;
 import es.guesstheword.service.UserService;
@@ -23,11 +24,14 @@ public class MenuLogic {
 
     private LeaderboardService leaderboardService;
 
-    public MenuLogic(GameService gameService, UserService userService, LoginLogic loginLogic, LeaderboardService leaderboardService) {
+    private AdminService adminService;
+
+    public MenuLogic(GameService gameService, UserService userService, LoginLogic loginLogic, LeaderboardService leaderboardService, AdminService adminService) {
         this.gameService = gameService;
         this.userService = userService;
         this.loginLogic = loginLogic;
         this.leaderboardService = leaderboardService;
+        this.adminService = adminService;
     }
 
     // TODO: close scanner after done with menu
@@ -55,7 +59,7 @@ public class MenuLogic {
                     if (login.equals("success") && userService.getUserRole() == 0) {
                         userMenu();
                     } else if (login.equals("success") && userService.getUserRole() == 1) {
-                        //adminMenu();
+                        adminMenu();
                     }
                     loginMenu();
                 }
@@ -98,4 +102,30 @@ public class MenuLogic {
         } while (!option.equals("0"));
     }
 
+
+    //ADMIN MENU
+    public void adminMenu() {
+        do {
+            System.out.println("0. SIGN OUT");
+            System.out.println("1. CREATE ADMIN");
+            System.out.println("2. ALL USERS");
+            System.out.println("3. SEARCH FOR USERS");
+            //System.out.println("4. DELETE ACCOUNT");
+            System.out.print("OPTION: ");
+
+            option = input.nextLine().trim();
+            switch (option) {
+
+                case "0" -> {
+                    userService.resetSession();
+                    loginMenu();
+                }
+                case "1" -> adminService.createAdmin();
+                case "2" -> adminService.getUsers();
+                case "3" -> adminService.getUsersBySearch();
+//              case 4 -> ;
+                default -> System.out.println("INPUT A VALID NUMBER");
+            }
+        } while (!option.equals("0"));
+    }
 }
