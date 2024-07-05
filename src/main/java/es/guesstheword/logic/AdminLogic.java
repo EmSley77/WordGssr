@@ -119,4 +119,10 @@ public class AdminLogic {
         System.out.println("SUCCESSFULLY DELETED USER WITH ID OR USERNAME: " + search);
     }
 
+
+    // edit account
+
+    //make a user an admin
+
+    // view game stats, how many players, total games played, globally stats...
 }
