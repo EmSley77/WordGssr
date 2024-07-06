@@ -127,7 +127,7 @@ public class MenuLogic {
             System.out.println("2. ALL USERS");
             System.out.println("3. SEARCH FOR USERS");
             System.out.println("4. VIEW USER INFO");
-            System.out.println("4. DELETE ACCOUNT");
+            System.out.println("5. DELETE USER ACCOUNT");
             System.out.print("OPTION: ");
 
             option = input.nextLine().trim();
@@ -140,8 +140,8 @@ public class MenuLogic {
                 case "1" -> adminService.createAdmin();
                 case "2" -> adminService.getUsers();
                 case "3" -> adminService.getUsersBySearch();
-                case "4" ->
-                case "4" -> adminService.deleteUser();
+                case "4" -> adminService.getUserInfo();
+                case "5" -> adminService.deleteUser();
                 default -> System.out.println("INPUT A VALID NUMBER");
             }
         } while (!option.equals("0"));

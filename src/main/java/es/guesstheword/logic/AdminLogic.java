@@ -70,11 +70,12 @@ public class AdminLogic {
 
         if (!usersList.isEmpty()) {
             for (Users users : usersList) {
-                System.out.println(users);
+                if (users.getRole() == 0) {
+                    System.out.println(users);
+                }
             }
         } else {
             System.out.println("0 USERS FOUND");
-            return;
         }
     }
 
@@ -137,7 +138,16 @@ public class AdminLogic {
             return;
         }
 
+
         System.out.println("_____________________");
+        System.out.println("NAME: " + user.getName());
+        System.out.println("LASTNAME: " + user.getLastname());
+        if (user.getRole() == 1) {
+            System.out.println("ROLE: 'ADMIN'" );
+
+        } else if (user.getRole() == 0) {
+            System.out.println("ROLE: 'USER'");
+        }
         System.out.println("USERNAME: " + user.getUsername());
         System.out.println("LEVEL: " + user.getGameLevel());
         System.out.println("XP: " + user.getXp());
