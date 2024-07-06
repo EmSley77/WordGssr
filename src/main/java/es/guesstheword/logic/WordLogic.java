@@ -130,6 +130,8 @@ public class WordLogic {
         System.out.println("SAVED EXPLANATION FOR WORD: " + word.getWord());
 
     }
+
+    //TODO: create a service class for this class, impl all these methods and test
 }
 
 
