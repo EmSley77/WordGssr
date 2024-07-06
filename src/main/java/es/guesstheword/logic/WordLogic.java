@@ -67,7 +67,7 @@ public class WordLogic {
         clue.setClue(newClue);
         clue.setWordId(word.getWordId());
         clueRepo.save(clue);
-        System.out.println("SAVED CLUE FOR WORD: " + word);
+        System.out.println("SAVED CLUE FOR WORD: " + word.getWord());
 
         System.out.print("ADD CLUE 2 TO WORD: ");
         String newClue2 = input.nextLine().trim();
@@ -80,7 +80,7 @@ public class WordLogic {
         clue2.setClue(newClue);
         clue2.setWordId(word.getWordId());
         clueRepo.save(clue2);
-        System.out.println("SAVED CLUE FOR WORD: " + word);
+        System.out.println("SAVED CLUE FOR WORD: " + word.getWord());
 
         System.out.print("ADD CLUE 3 TO WORD: ");
         String newClue3 = input.nextLine().trim();
@@ -93,12 +93,8 @@ public class WordLogic {
         clue3.setClue(newClue);
         clue3.setWordId(word.getWordId());
         clueRepo.save(clue3);
-        System.out.println("SAVED CLUE FOR WORD: " + word);
+        System.out.println("SAVED CLUE FOR WORD: " + word.getWord());
         System.out.println("THANK YOU FOR REGISTERING CLUES, HAVE A NICE DAY");
-
-
-
-
 
 
     }
@@ -107,10 +103,21 @@ public class WordLogic {
 
         System.out.print("ENTER WORD ID: ");
         String wordId = input.nextLine().trim();
-        if (wordsRepo.findById(Integer.parseInt(wordId)) == null) {
+
+        Words word = wordsRepo.findWordsByWordId(Integer.parseInt(wordId));
+        if (word == null) {
             System.out.println("COULD NOT FIND WORD");
             return;
         }
+
+        System.out.print("ENTER CLUE FOR WORD: ");
+        String clue1 = input.nextLine().trim();
+
+        Clues clue = new Clues();
+        clue.setWordId(word.getWordId());
+        clue.setClue(clue1);
+        clueRepo.save(clue);
+        System.out.println("SAVED CLUE FOR WORD: " + word.getWord());
 
     }
 
@@ -120,7 +127,7 @@ public class WordLogic {
         explanation1.setWordExplanation(explanation);
         explanation1.setWordId(word.getWordId());
         explanationRepo.save(explanation1);
-        System.out.println("SAVED EXPLANATION FOR WORD: " + word);
+        System.out.println("SAVED EXPLANATION FOR WORD: " + word.getWord());
 
     }
 }
