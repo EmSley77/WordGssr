@@ -66,7 +66,7 @@ public class AdminLogic {
 
     //TODO: search and get users
     public void getAllUsers() {
-        List<Users> usersList =  userRepo.findAll();
+        List<Users> usersList = userRepo.findAll();
 
         if (!usersList.isEmpty()) {
             for (Users users : usersList) {
@@ -91,7 +91,7 @@ public class AdminLogic {
         }
         List<Users> usersList = userRepo.findUsersByUsernameContainingOrNameContaining(search, search);
         if (!usersList.isEmpty()) {
-            for (Users user: usersList) {
+            for (Users user : usersList) {
                 System.out.println(user);
             }
         } else {
@@ -122,6 +122,27 @@ public class AdminLogic {
             e.printStackTrace();
         }
 
+    }
+
+
+    //view these stats after signing in
+    public void userStats() {
+
+        System.out.print("ENTER USER ID: ");
+        String id = input.nextLine().trim();
+        Users user = userRepo.findUsersByUserId(Integer.parseInt(id));
+
+        if (user == null) {
+            System.out.println("COULD NOT FIND ANY USER WITH ID: " + id);
+            return;
+        }
+
+        System.out.println("_____________________");
+        System.out.println("USERNAME: " + user.getUsername());
+        System.out.println("LEVEL: " + user.getGameLevel());
+        System.out.println("XP: " + user.getXp());
+        System.out.println("REGISTERED: " + user.getRegistrationDate());
+        System.out.println("_____________________");
     }
 
 

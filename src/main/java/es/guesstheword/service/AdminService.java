@@ -29,6 +29,11 @@ public class AdminService {
         adminLogic.createAdminAccount();
     }
 
+    //level, xp and username
+    public void getUserInfo() {
+        adminLogic.userStats();
+    }
+
     //delete user, test first if working
     public void deleteUser() {
         adminLogic.deleteUser();
