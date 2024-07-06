@@ -29,6 +29,10 @@ public class AdminService {
         adminLogic.createAdminAccount();
     }
 
+    public void getAdmins() {
+        adminLogic.getAdmins();
+    }
+
     //level, xp and username
     public void getUserInfo() {
         adminLogic.userStats();

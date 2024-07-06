@@ -79,6 +79,22 @@ public class AdminLogic {
         }
     }
 
+    //get all admins
+    //TODO: search and get users
+    public void getAdmins() {
+        List<Users> usersList = userRepo.findAll();
+
+        if (!usersList.isEmpty()) {
+            for (Users users : usersList) {
+                if (users.getRole() == 1) {
+                    System.out.println(users);
+                }
+            }
+        } else {
+            System.out.println("0 USERS FOUND");
+        }
+    }
+
     public void getBySearch() {
         System.out.println("2. EXIT SEARCH");
         System.out.print("SEARCH: ");
