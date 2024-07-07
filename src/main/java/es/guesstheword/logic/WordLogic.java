@@ -139,6 +139,23 @@ public class WordLogic {
     //TODO: create a service class for this class, impl all these methods and test
 
     //get clues by inputting wordId
+    public void getCluesByWordId() {
+        System.out.println("ENTER 2 TO EXIT SEARCH");
+        System.out.println("ENTER WORD ID TO FIND CLUES");
+        System.out.print("ENTER WORD ID: ");
+
+        String findClues = input.nextLine().trim();
+
+        List<Clues> clues = clueRepo.findCluesByWordId(Integer.parseInt(findClues));
+        if (clues.isEmpty()) {
+            System.out.println("NO CLUES FOUND FOR THIS WORD");
+            return;
+        }
+
+        for (Clues c : clues) {
+            System.out.println(c);
+        }
+    }
 
 
     //get all words
@@ -160,7 +177,7 @@ public class WordLogic {
         System.out.println("ENTER WORD TO FIND");
         System.out.print("ENTER SEARCH: ");
         String findWord = input.nextLine().trim();
-        List <Words> words = wordsRepo.findWordsByWordContaining(findWord);
+        List<Words> words = wordsRepo.findWordsByWordContaining(findWord);
         if (words.isEmpty()) {
             System.out.println("NO WORDS FOUND, TRY AGAIN");
             return;

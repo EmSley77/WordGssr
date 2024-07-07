@@ -24,4 +24,18 @@ public class WordService {
     public void addClue() {
         wordLogic.addClues();
     }
+
+    public void getWords() {
+        wordLogic.getAllWords();
+    }
+
+    public void getWordsBySearch() {
+        wordLogic.getWordsBySearch();
+    }
+
+    public void getCluesByWordId() {
+        wordLogic.getCluesByWordId();
+    }
+
+
 }
