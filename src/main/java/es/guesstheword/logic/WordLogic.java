@@ -57,45 +57,6 @@ public class WordLogic {
 
         addExplanation(explanation, word);
 
-        System.out.print("ADD CLUE 1: ");
-        String newClue = input.nextLine().trim();
-        if (clueRepo.findCluesByClue(newClue) != null) {
-            System.out.println("CLUE IS ALREADY REGISTERED, TRY ANOTHER");
-            return;
-        }
-
-        Clues clue = new Clues();
-        clue.setClue(newClue);
-        clue.setWordId(word.getWordId());
-        clueRepo.save(clue);
-        System.out.println("SAVED CLUE FOR WORD: " + word.getWord());
-
-        System.out.print("ADD CLUE 2: ");
-        String newClue2 = input.nextLine().trim();
-        if (clueRepo.findCluesByClue(newClue2) != null) {
-            System.out.println("CLUE IS ALREADY REGISTERED, TRY ANOTHER");
-            return;
-        }
-
-        Clues clue2 = new Clues();
-        clue2.setClue(newClue);
-        clue2.setWordId(word.getWordId());
-        clueRepo.save(clue2);
-        System.out.println("SAVED CLUE FOR WORD: " + word.getWord());
-
-        System.out.print("ADD CLUE 3: ");
-        String newClue3 = input.nextLine().trim();
-        if (clueRepo.findCluesByClue(newClue3) != null) {
-            System.out.println("CLUE IS ALREADY REGISTERED, TRY ANOTHER");
-            return;
-        }
-
-        Clues clue3 = new Clues();
-        clue3.setClue(newClue);
-        clue3.setWordId(word.getWordId());
-        clueRepo.save(clue3);
-        System.out.println("SAVED CLUE FOR WORD: " + word.getWord());
-        System.out.println("THANK YOU FOR REGISTERING CLUES, HAVE A NICE DAY");
 
 
     }

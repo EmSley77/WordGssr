@@ -42,13 +42,17 @@ public class LeaderboardLogic {
 
         System.out.println("----------LEADERBOARD----------");
         for (Users user : usersList) {
+            if (user.getRole() != 0) {
+                continue;
+            }
+
             int wins = 0;
             int losses = 0;
             int gamesPlayed = 0;
             int avgGuess = 0;
+
+            int totalGuesses = 0;
             for (Leaderboard leaderboard : leaderboards) {
-
-
                 if (user.getUserId() == leaderboard.getUserId()) {
 
                     if (leaderboard.getWinLoss().equals("WON")) {
@@ -61,9 +65,13 @@ public class LeaderboardLogic {
 
                     gamesPlayed++;
 
+                    totalGuesses += leaderboard.getNumberOfGuesses();
 
                 }
-                avgGuess += leaderboard.getNumberOfGuesses() / gamesPlayed;
+                if (gamesPlayed == 0) {
+                    continue;
+                }
+                avgGuess = totalGuesses / gamesPlayed;
 
 
             }
@@ -86,17 +94,21 @@ public class LeaderboardLogic {
 
         Users user = userRepo.findUsersByUserId(userLogic.getUserId());
         if (user == null) {
-
+            System.out.println("NO USER FOUND");
+            return;
+        }
+        if (user.getRole() != 0) {
+            System.out.println("YOU ARE NOT A USER, YOU CANNOT VIEW YOUR STATS");
+            return;
         }
 
         int wins = 0;
         int losses = 0;
         int gamesPlayed = 0;
         int avgGuess = 0;
+        int totalGuesses = 0;
         for (Leaderboard leaderboard : leaderboards) {
-
-            if (userLogic.getUserId() == leaderboard.getUserId()) {
-
+            if (userLogic.getUserId() == leaderboard.getUserId() && user.getRole() == 0) {
 
                 if (leaderboard.getWinLoss().equals("WON")) {
                     wins += 1;
@@ -104,12 +116,14 @@ public class LeaderboardLogic {
                 if (leaderboard.getWinLoss().equals("LOST")) {
                     losses += 1;
                 }
-
-
                 gamesPlayed++;
+                totalGuesses += leaderboard.getNumberOfGuesses();
 
             }
-            avgGuess += leaderboard.getNumberOfGuesses() / gamesPlayed;
+            if (gamesPlayed == 0) {
+                continue;
+            }
+            avgGuess = totalGuesses / gamesPlayed;
         }
         System.out.println("______________________________________");
         System.out.println("USERNAME: " + user.getUsername());
