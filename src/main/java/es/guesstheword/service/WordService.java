@@ -38,4 +38,7 @@ public class WordService {
     }
 
 
+    public void deleteWordById() {
+        wordLogic.deleteWorById();
+    }
 }

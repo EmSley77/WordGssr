@@ -58,7 +58,6 @@ public class WordLogic {
         addExplanation(explanation, word);
 
 
-
     }
 
     public void addClues() {
@@ -96,8 +95,6 @@ public class WordLogic {
         System.out.println("SAVED EXPLANATION FOR WORD: " + word.getWord());
 
     }
-
-    //TODO: create a service class for this class, impl all these methods and test
 
     //get clues by inputting wordId
     public void getCluesByWordId() {
@@ -146,6 +143,21 @@ public class WordLogic {
 
         for (Words w : words) {
             System.out.println(w);
+        }
+    }
+
+    //delete a word by id
+    public void deleteWorById() {
+        try {
+            System.out.println("ENTER 2 TO EXIT DELETE PAGE");
+            System.out.println("ENTER WORD ID TO DELETE WORD");
+            System.out.print("ENTER: ");
+
+            String wordId = input.nextLine().trim();
+            wordsRepo.deleteById(Integer.parseInt(wordId));
+            System.out.println("SUCESSFULLY DELETED WORD");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
