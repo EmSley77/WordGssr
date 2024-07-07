@@ -5,10 +5,7 @@ Emanuel sleyman
 a class for all menu logic
 */
 
-import es.guesstheword.service.AdminService;
-import es.guesstheword.service.GameService;
-import es.guesstheword.service.LeaderboardService;
-import es.guesstheword.service.UserService;
+import es.guesstheword.service.*;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
@@ -26,14 +23,22 @@ public class MenuLogic {
 
     private AdminService adminService;
 
+    private WordService wordService;
+
     private Scanner input = new Scanner(System.in);
 
-    public MenuLogic(GameService gameService, UserService userService, LoginLogic loginLogic, LeaderboardService leaderboardService, AdminService adminService) {
+    public MenuLogic(GameService gameService,
+                     UserService userService,
+                     LoginLogic loginLogic,
+                     LeaderboardService leaderboardService,
+                     AdminService adminService,
+                     WordService wordService) {
         this.gameService = gameService;
         this.userService = userService;
         this.loginLogic = loginLogic;
         this.leaderboardService = leaderboardService;
         this.adminService = adminService;
+        this.wordService = wordService;
     }
 
     // TODO: close scanner after done with menu
@@ -128,7 +133,9 @@ public class MenuLogic {
             System.out.println("3. ALL ADMINS");
             System.out.println("4. SEARCH FOR USERS");
             System.out.println("5. VIEW USER INFO");
-            System.out.println("6. DELETE USER ACCOUNT");
+            System.out.println("6. ADD A NEW WORD");
+            System.out.println("7. ADD A NEW CLUE FOR A WORD");
+            System.out.println("8. DELETE USER ACCOUNT");
             System.out.print("OPTION: ");
 
             option = input.nextLine().trim();
@@ -143,7 +150,10 @@ public class MenuLogic {
                 case "3" -> adminService.getAdmins();
                 case "4" -> adminService.getUsersBySearch();
                 case "5" -> adminService.getUserInfo();
-                case "6" -> adminService.deleteUser();
+                case "6" -> wordService.createWord();
+                case "7" -> wordService.addClue();
+                case "8" -> adminService.deleteUser();
+
                 default -> System.out.println("INPUT A VALID NUMBER");
             }
         } while (!option.equals("0"));
