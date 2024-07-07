@@ -13,6 +13,7 @@ import es.guesstheword.repository.ExplanationRepo;
 import es.guesstheword.repository.WordsRepo;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Scanner;
 
 @Component
@@ -56,7 +57,7 @@ public class WordLogic {
 
         addExplanation(explanation, word);
 
-        System.out.print("ADD CLUE 1 TO WORD: ");
+        System.out.print("ADD CLUE 1: ");
         String newClue = input.nextLine().trim();
         if (clueRepo.findCluesByClue(newClue) != null) {
             System.out.println("CLUE IS ALREADY REGISTERED, TRY ANOTHER");
@@ -69,7 +70,7 @@ public class WordLogic {
         clueRepo.save(clue);
         System.out.println("SAVED CLUE FOR WORD: " + word.getWord());
 
-        System.out.print("ADD CLUE 2 TO WORD: ");
+        System.out.print("ADD CLUE 2: ");
         String newClue2 = input.nextLine().trim();
         if (clueRepo.findCluesByClue(newClue2) != null) {
             System.out.println("CLUE IS ALREADY REGISTERED, TRY ANOTHER");
@@ -82,7 +83,7 @@ public class WordLogic {
         clueRepo.save(clue2);
         System.out.println("SAVED CLUE FOR WORD: " + word.getWord());
 
-        System.out.print("ADD CLUE 3 TO WORD: ");
+        System.out.print("ADD CLUE 3: ");
         String newClue3 = input.nextLine().trim();
         if (clueRepo.findCluesByClue(newClue3) != null) {
             System.out.println("CLUE IS ALREADY REGISTERED, TRY ANOTHER");
@@ -139,9 +140,36 @@ public class WordLogic {
 
     //get clues by inputting wordId
 
+
     //get all words
+    public void getAllWords() {
+        List<Words> words = wordsRepo.findAll();
+        if (words.isEmpty()) {
+            System.out.println("NO WORDS FOUND");
+            return;
+        }
+
+        for (Words word : words) {
+            System.out.println(word);
+        }
+    }
 
     //search for words and get information
+    public void getWordsBySearch() {
+        System.out.println("ENTER 2 TO EXIT SEARCH");
+        System.out.println("ENTER WORD TO FIND");
+        System.out.print("ENTER SEARCH: ");
+        String findWord = input.nextLine().trim();
+        List <Words> words = wordsRepo.findWordsByWordContaining(findWord);
+        if (words.isEmpty()) {
+            System.out.println("NO WORDS FOUND, TRY AGAIN");
+            return;
+        }
+
+        for (Words w : words) {
+            System.out.println(w);
+        }
+    }
 
 
 }
