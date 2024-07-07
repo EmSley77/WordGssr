@@ -69,6 +69,8 @@ public class UserLogic {
 
     //delete account
     public void deleteAccount() {
+        System.out.println("ENTER '2' to exit page");
+
         System.out.print("Write Username: ");
         String username = input.nextLine();
 
@@ -78,14 +80,21 @@ public class UserLogic {
         System.out.print("Repeat Password: ");
         String repeatPassword = input.nextLine();
 
+        if (username.equals("2") || password.equals("2") || repeatPassword.equals("2")) {
+            System.out.println("EXITED FROM DELETE PAGE");
+            return;
+        }
         Users user = userRepo.findByUsernameAndPassword(username, password);
         if (user == null) {
             System.out.println("could not find user with these credentials, try again");
             return;
         }
 
-        userRepo.deleteById(user.getUserId());
-        System.out.println("User with username: " + username + " has been deleted");
+        if (username.equals(user.getUsername()) && password.equals(user.getPassword()) && repeatPassword.equals(user.getPassword())) {
+            userRepo.deleteById(user.getUserId());
+            System.out.println("User with username: " + username + " has been deleted");
+        }
+
         //make sure to direct back to login page after deleting user account
     }
 
