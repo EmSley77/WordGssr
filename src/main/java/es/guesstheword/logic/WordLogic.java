@@ -1,7 +1,7 @@
 package es.guesstheword.logic;
 /*
 Emanuel sleyman
-2024-06-29
+2024-07-06
 logic for creating a word and clues and explanations
 */
 
