@@ -129,16 +129,17 @@ public class MenuLogic {
         do {
             System.out.println("0. SIGN OUT");
             System.out.println("1. CREATE ADMIN");
+            System.out.println();
             System.out.println("2. ALL USERS");
             System.out.println("3. ALL ADMINS");
             System.out.println("4. SEARCH FOR USERS");
             System.out.println("5. VIEW USER INFO");
-
+            System.out.println();
             System.out.println("6. GET ALL WORDS");
             System.out.println("7. GET WORDS BY SEARCHING");
             System.out.println("8. GET WORD CLUES BY WORD ID");
             System.out.println("9. DELETE WORD BY ID");
-
+            System.out.println();
             System.out.println("10. ADD A NEW WORD");
             System.out.println("11. ADD A NEW CLUE FOR A WORD");
             System.out.println("12. DELETE USER ACCOUNT");
