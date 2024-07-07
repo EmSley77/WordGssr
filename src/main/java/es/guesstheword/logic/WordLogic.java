@@ -109,6 +109,10 @@ public class WordLogic {
             System.out.println("COULD NOT FIND WORD");
             return;
         }
+        if (clueRepo.findCluesByWordId(word.getWordId()).size() == 3) {
+            System.out.println("YOU CAN ONLY HAVE 3 CLUES PER WORD");
+            return;
+        }
 
         System.out.print("ENTER CLUE FOR WORD: ");
         String clue1 = input.nextLine().trim();
@@ -132,6 +136,14 @@ public class WordLogic {
     }
 
     //TODO: create a service class for this class, impl all these methods and test
+
+    //get clues by inputting wordId
+
+    //get all words
+
+    //search for words and get information
+
+
 }
 
 
