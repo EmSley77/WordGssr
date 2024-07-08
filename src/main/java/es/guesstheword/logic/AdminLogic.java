@@ -7,6 +7,7 @@ this class is for admin methods
 
 import es.guesstheword.entity.Users;
 import es.guesstheword.repository.UserRepo;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -62,9 +63,6 @@ public class AdminLogic {
     }
 
 
-    // TODO: create word, delete word, view all words, search for words
-
-    //TODO: search and get users
     public void getAllUsers() {
         List<Users> usersList = userRepo.findAll();
 
@@ -80,7 +78,6 @@ public class AdminLogic {
     }
 
     //get all admins
-    //TODO: search and get users
     public void getAdmins() {
         List<Users> usersList = userRepo.findAll();
 
@@ -123,7 +120,7 @@ public class AdminLogic {
     public void deleteUser() {
         try {
             System.out.println("'EXIT' TO EXIT DELETE PAGE");
-            System.out.print("ENTER ID OR USERNAME: ");
+            System.out.print("ENTER ID OR USERNAME TO DELETE USER: ");
             String search = "";
             while (search.isEmpty()) {
                 search = input.nextLine().trim();
@@ -159,7 +156,7 @@ public class AdminLogic {
         System.out.println("NAME: " + user.getName());
         System.out.println("LASTNAME: " + user.getLastname());
         if (user.getRole() == 1) {
-            System.out.println("ROLE: 'ADMIN'" );
+            System.out.println("ROLE: 'ADMIN'");
 
         } else if (user.getRole() == 0) {
             System.out.println("ROLE: 'USER'");
@@ -175,6 +172,24 @@ public class AdminLogic {
     // edit account
 
     //make a user an admin
+    public void makeUserAdmin() {
+        System.out.println("ENTER 2 TO EXIT");
+        System.out.println("ENTER USER ID TO MAKE USER ADMIN: ");
+        System.out.print("ENTER: ");
+        String s = input.nextLine().trim();
+
+        Users user = userRepo.findUsersByUserId(Integer.parseInt(s));
+        if (user.getRole() != 0) {
+            System.out.println("USER MUST BE A USER WITH ROLE 0");
+            return;
+        }
+
+        user.setRole(1);
+        userRepo.save(user);
+        System.out.println("CHANGED USER ROLE TO ADMIN ON USERNAME: " + user.getUsername());
+
+
+    }
 
     // view game stats, how many players, total games played, globally stats...
 }
