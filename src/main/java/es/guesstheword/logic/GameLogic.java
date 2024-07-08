@@ -22,8 +22,8 @@ public class GameLogic {
     private ClueRepo clueRepo;
     private UserRepo userRepo;
 
+    private Random random = new Random();
     private UserLogic userLogic;
-
     private Scanner input = new Scanner(System.in);
 
     private String guess;
@@ -48,7 +48,6 @@ public class GameLogic {
 
     //get word random
     public Words getRandomWord() {
-        Random random = new Random();
         List<Words> allWordsList = wordsRepo.findAll();
         return allWordsList.get(random.nextInt(allWordsList.size()));
     }
@@ -60,7 +59,6 @@ public class GameLogic {
 
     //get random clues
     public String getWordClue(Words word) {
-        Random random = new Random();
         List<Clues> clues = clueRepo.findCluesByWordId(word.getWordId());
         return clues.get(random.nextInt(clues.size())).getClue();
     }
@@ -91,7 +89,6 @@ public class GameLogic {
             user.setGameLevel(user.getGameLevel() + 1);
         }
 
-
         userRepo.save(user);
     }
 
@@ -112,6 +109,7 @@ public class GameLogic {
             e.printStackTrace();
         }
     }
+
     //save lost results in leaderboard
     public void saveLostResults(Words word, int nGuess, int nClues, double time) {
         try {
@@ -163,7 +161,7 @@ public class GameLogic {
                 System.out.println("YOU LOST");
                 //remove 10 xp from user and log the user logs
                 lostGame();
-                saveLostResults(word,nGuess, nClues, elapsedTime);
+                saveLostResults(word, nGuess, nClues, elapsedTime);
                 return;
 
             }
