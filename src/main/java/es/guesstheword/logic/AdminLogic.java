@@ -55,10 +55,11 @@ public class AdminLogic {
         user.setGameLevel(1);
         user.setRole(0);
         user.setRegistrationDate(Date.valueOf(LocalDate.now()));
+
         if (rPassword.equals(password)) {
             userRepo.save(user);
             System.out.println("ACCOUNT WAS CREATED");
-        } else return;
+        }
 
     }
 
@@ -110,7 +111,6 @@ public class AdminLogic {
             }
         } else {
             System.out.println("0 USERS FOUND");
-            return;
         }
 
     }
@@ -150,7 +150,6 @@ public class AdminLogic {
             System.out.println("COULD NOT FIND ANY USER WITH ID: " + id);
             return;
         }
-
 
         System.out.println("_____________________");
         System.out.println("NAME: " + user.getName());
