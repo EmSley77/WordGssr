@@ -22,6 +22,7 @@ public class GameLogic {
     private ClueRepo clueRepo;
     private UserRepo userRepo;
 
+    Leaderboard leaderboard = new Leaderboard();
     private Random random = new Random();
     private UserLogic userLogic;
     private Scanner input = new Scanner(System.in);
@@ -95,7 +96,6 @@ public class GameLogic {
     //save won results in leaderboard
     public void saveWonResults(Words word, int nGuess, int nClues, double time) {
         try {
-            Leaderboard leaderboard = new Leaderboard();
             leaderboard.setUserId(userLogic.getUserId());
             leaderboard.setUsername(userLogic.getUserUsername());
             leaderboard.setSecretWord(String.valueOf(word.getWord()));
@@ -113,7 +113,6 @@ public class GameLogic {
     //save lost results in leaderboard
     public void saveLostResults(Words word, int nGuess, int nClues, double time) {
         try {
-            Leaderboard leaderboard = new Leaderboard();
             leaderboard.setUserId(userLogic.getUserId());
             leaderboard.setUsername(userLogic.getUserUsername());
             leaderboard.setSecretWord(String.valueOf(word.getWord()));
@@ -133,6 +132,10 @@ public class GameLogic {
         Users user = userRepo.findByUsername(userLogic.getUserUsername());
         if (user == null) {
             System.out.println("could not find user");
+            return;
+        }
+
+        if (user.getXp() == 0) {
             return;
         }
 
@@ -158,7 +161,7 @@ public class GameLogic {
             }
 
             if (guess.equalsIgnoreCase("END")) {
-                System.out.println("YOU LOST");
+                System.out.println("YOU LOST, THE WORD WAS: " + word.getWord());
                 //remove 10 xp from user and log the user logs
                 lostGame();
                 saveLostResults(word, nGuess, nClues, elapsedTime);
@@ -168,7 +171,7 @@ public class GameLogic {
 
             //continue game as while its not equal
         } while (!guess.equalsIgnoreCase(String.valueOf(word.getWord())));
-        System.out.println("YOU WON");
+        System.out.println("YOU GUESSED CORRECT, THE WORD WAS: " + word.getWord());
 
 
         endTimer = (int) System.currentTimeMillis();
