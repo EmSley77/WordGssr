@@ -133,13 +133,14 @@ public class MenuLogic {
             System.out.println("3. ALL ADMINS");
             System.out.println("4. SEARCH FOR USERS");
             System.out.println("5. VIEW USER INFO");
-            System.out.println("6. GET ALL WORDS");
-            System.out.println("7. GET WORDS BY SEARCHING");
-            System.out.println("8. GET WORD CLUES BY WORD ID");
-            System.out.println("9. DELETE WORD BY ID");
-            System.out.println("10. ADD A NEW WORD");
-            System.out.println("11. ADD A NEW CLUE FOR A WORD");
-            System.out.println("12. DELETE USER ACCOUNT");
+            System.out.println("6. MAKE USER AN ADMIN BY ID");
+            System.out.println("7. DELETE USER ACCOUNT");
+            System.out.println("8. GET ALL WORDS");
+            System.out.println("9. GET WORDS BY SEARCHING");
+            System.out.println("10. GET WORD CLUES BY WORD ID");
+            System.out.println("11. DELETE WORD BY ID");
+            System.out.println("12. ADD A NEW WORD");
+            System.out.println("13. ADD A NEW CLUE FOR A WORD");
             System.out.print("OPTION: ");
 
             option = input.nextLine().trim();
@@ -154,16 +155,17 @@ public class MenuLogic {
                 case "3" -> adminService.getAdmins();
                 case "4" -> adminService.getUsersBySearch();
                 case "5" -> adminService.getUserInfo();
-
-                case "6" -> wordService.getWords();
-                case "7" -> wordService.getWordsBySearch();
-                case "8" -> wordService.getCluesByWordId();
-                case "9" -> wordService.deleteWordById();
+                case "6" -> adminService.makeUserAdmin();
+                case "7" -> adminService.deleteUser();
 
 
-                case "10" -> wordService.createWord();
-                case "11" -> wordService.addClue();
-                case "12" -> adminService.deleteUser();
+                case "8" -> wordService.getWords();
+                case "9" -> wordService.getWordsBySearch();
+                case "10" -> wordService.getCluesByWordId();
+                case "11" -> wordService.deleteWordById();
+
+                case "12" -> wordService.createWord();
+                case "13" -> wordService.addClue();
 
                 default -> System.out.println("INPUT A VALID NUMBER");
             }

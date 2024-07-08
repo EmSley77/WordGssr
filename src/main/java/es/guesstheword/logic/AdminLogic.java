@@ -187,8 +187,6 @@ public class AdminLogic {
         user.setRole(1);
         userRepo.save(user);
         System.out.println("CHANGED USER ROLE TO ADMIN ON USERNAME: " + user.getUsername());
-
-
     }
 
     // view game stats, how many players, total games played, globally stats...

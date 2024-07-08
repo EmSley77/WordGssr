@@ -38,6 +38,10 @@ public class AdminService {
         adminLogic.userStats();
     }
 
+    public void makeUserAdmin() {
+        adminLogic.makeUserAdmin();
+    }
+
     //delete user, test first if working
     public void deleteUser() {
         adminLogic.deleteUser();
