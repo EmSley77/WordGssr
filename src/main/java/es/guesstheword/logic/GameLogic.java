@@ -25,9 +25,7 @@ public class GameLogic {
     Leaderboard leaderboard = new Leaderboard();
     private Random random = new Random();
     private UserLogic userLogic;
-    private Scanner input = new Scanner(System.in);
 
-    private String guess;
     private Words word;
     private int nGuess = 0;
     private int startTimer;
@@ -144,15 +142,13 @@ public class GameLogic {
     }
 
     //play game
-    public void guessGame() {
+    public void guessGame(String guess) {
 
         prepareGame();
         startTimer = (int) System.currentTimeMillis();
 
         do {
-            System.out.println("'END' to exit game");
-            System.out.print("Guess the word: ");
-            guess = input.nextLine().trim();
+
             nGuess++;
 
             if (nGuess == 3 || nGuess == 6 || nGuess == 9) {

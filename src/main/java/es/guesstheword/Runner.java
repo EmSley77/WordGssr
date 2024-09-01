@@ -1,7 +1,6 @@
 package es.guesstheword;
 
-import es.guesstheword.service.GameService;
-import es.guesstheword.service.MenuService;
+import es.guesstheword.ui.MenuService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

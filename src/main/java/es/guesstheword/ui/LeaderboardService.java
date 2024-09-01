@@ -1,4 +1,4 @@
-package es.guesstheword.service;
+package es.guesstheword.ui;
 /*
 Emanuel sleyman
 2024-07-02

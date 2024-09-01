@@ -5,7 +5,7 @@ Emanuel sleyman
 a class for all menu logic
 */
 
-import es.guesstheword.service.*;
+import es.guesstheword.ui.*;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;

@@ -28,18 +28,8 @@ public class AdminLogic {
     }
 
     //create account, need a scanner to make this work
-    public void createAdminAccount() {
+    public void createAdminAccount(String name, String lastname, String username, String password, String rPassword) {
 
-        System.out.print("Name: ");
-        String name = input.nextLine();
-        System.out.print("Lastname: ");
-        String lastname = input.nextLine();
-        System.out.print("Username: ");
-        String username = input.nextLine();
-        System.out.print("Password: ");
-        String password = input.nextLine();
-        System.out.print("Rewrite Password: ");
-        String rPassword = input.nextLine();
 
         if (userRepo.findByUsername(username) != null) {
             System.out.println("USER WITH USERNAME: " + username + "ALREADY EXISTS");
@@ -93,10 +83,8 @@ public class AdminLogic {
         }
     }
 
-    public void getBySearch() {
-        System.out.println("2. EXIT SEARCH");
-        System.out.print("SEARCH: ");
-        String search = "";
+    public void getBySearch(String search) {
+
         while (search.isEmpty()) {
             search = input.nextLine().trim();
             if (search.equals("2")) {
@@ -117,11 +105,9 @@ public class AdminLogic {
 
     //delete user
     @Transactional
-    public void deleteUser() {
+    public void deleteUser(String search) {
         try {
-            System.out.println("'EXIT' TO EXIT DELETE PAGE");
-            System.out.print("ENTER ID OR USERNAME TO DELETE USER: ");
-            String search = "";
+
             while (search.isEmpty()) {
                 search = input.nextLine().trim();
                 if (search.equalsIgnoreCase("EXIT")) {
@@ -140,10 +126,9 @@ public class AdminLogic {
 
 
     //view these stats after signing in
-    public void userStats() {
+    public void userStats(String id) {
 
-        System.out.print("ENTER USER ID: ");
-        String id = input.nextLine().trim();
+
         Users user = userRepo.findUsersByUserId(Integer.parseInt(id));
 
         if (user == null) {
@@ -171,11 +156,8 @@ public class AdminLogic {
     // edit account
 
     //make a user an admin
-    public void makeUserAdmin() {
-        System.out.println("ENTER 2 TO EXIT");
-        System.out.println("ENTER USER ID TO MAKE USER ADMIN: ");
-        System.out.print("ENTER: ");
-        String s = input.nextLine().trim();
+    public void makeUserAdmin(String s) {
+
 
         Users user = userRepo.findUsersByUserId(Integer.parseInt(s));
         if (user.getRole() != 0) {
